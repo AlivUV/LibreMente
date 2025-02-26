@@ -1,0 +1,73 @@
+#dialog-paper {
+  max-width: 400px;
+  height: 485px;
+}
+
+.notes-panel {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin-top: 3%;
+  height: 97%;
+  width: 100%;
+}
+
+.notes-panel :global(.MuiInputBase-input), .notes-panel :global(.ql-editor) {
+  color: #666666
+}
+
+#swipeable-views {
+  min-height: inherit;
+}
+
+#swipeable-views :global(.react-swipeable-view-container) {
+  min-height: 330px;
+  max-height: 350px;
+}
+
+#swipeable-views :global(.ql-container) {
+  min-height: 120px;
+  max-height: 120px;
+  overflow: auto;
+}
+
+#list-notes-panel {
+  margin: 0px;
+  height: 100%;
+}
+
+#notes-list {
+  height: 70%;
+  overflow: auto;
+}
+
+#pagination :global(ul) {
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  flex-direction: row;
+}
+
+.content :global(.quill) {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  overflow-y: hidden;
+}
+
+.fill {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.list-container {
+  width: 20rem;
+  flex: 0 1 auto;
+}

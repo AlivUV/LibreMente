@@ -1,0 +1,40 @@
+#dialog-paper {
+  max-width: 400px;
+  height: 485px;
+}
+
+.notes-panel {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
+}
+
+#swipeable-views {
+  min-height: inherit;
+}
+
+#swipeable-views .react-swipeable-view-container {
+  min-height: 330px;
+  max-height: 330px;
+}
+
+#swipeable-views .ql-container {
+  min-height: 120px;
+  max-height: 120px;
+  overflow: auto;
+}
+
+#list-notes-panel {
+  margin: 0px;
+  height: 100%;
+}
+
+#notes-list {
+  height: 70%;
+  overflow: auto;
+}
+
+#pagination ul {
+  justify-content: center;
+}
