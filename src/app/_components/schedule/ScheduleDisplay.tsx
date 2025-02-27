@@ -2,7 +2,6 @@
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import ModalStates from "@/app/_enums/PeriodModalStates";
 import { IDay } from "@/app/_interfaces/schedule/IDay";
-import { ISchedule } from "@/app/_interfaces/schedule/ISchedule";
 import { scheduleTheme } from "@/app/_themes/schedule-theme";
 import { days } from "@/app/_utils/constants";
 import { SCHEDULES } from "@/app/_utils/endpoints";
@@ -44,7 +43,6 @@ export default function ScheduleDisplay() {
   }
 
   console.log("Carga la página");
-  let result: ISchedule | null | undefined;
   const { data: session } = useSession();
   const [loading, setLoading] = useState(true);
   const fetchSchedule = useCallback(() => {
@@ -60,8 +58,6 @@ export default function ScheduleDisplay() {
       )
         .then((res) => res.json())
         .then((res) => {
-          // console.log("Este es el resultado");
-          // console.log(res.days);
           res;
           console.log("Me llegó algo");
           if (res?.days) setSchedule([...res.days]);
@@ -72,16 +68,13 @@ export default function ScheduleDisplay() {
   useEffect(() => {
     fetchSchedule();
   }, [session, fetchSchedule]);
-  // console.log("Result days es: " + result?.days);
   const [schedule, setSchedule] = React.useState<IDay[]>(
-    // result?.days ? [...result.days] :
     days.map((day) => ({
       day: day,
       hours: new Array(24).fill(false),
     }))
   );
   const [modalOpen, setModalOpen] = useState(ModalStates.Closed);
-  // console.log("el lunes es: " + JSON.stringify(schedule));
   return (
     <Box display="flex" flexDirection="column" height="100%">
       <AddPeriodModal
@@ -154,17 +147,7 @@ export default function ScheduleDisplay() {
             </ListItemButton>
           </ListItem>
         </List>
-
-        {/* <Box id="box1" sx = {{ height: '100vh'}}>
-            <Toolbar/>
-            <Box id="box2"sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100vw'}}>
-            <Box id="box3" sx={{width: '100vw'}}> */}
-        {/* <Paper sx={{ width: '100%',  }}> */}
         <ScheduleTable schedule={schedule} loading={loading} />
-        {/* </Box>
-            </Box>
-            </Box> */}
-        {/* </Paper> */}
       </Stack>
     </Box>
   );

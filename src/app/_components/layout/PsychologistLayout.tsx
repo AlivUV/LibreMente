@@ -1,11 +1,8 @@
 "use client";
 import React, { FC, ReactNode, useState } from "react";
 import Head from "next/head";
-import { SideMenu } from "../ui/SideMenu/SideMenu";
-import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { UiContext } from "@/app/_contexts/ui/UiContext";
 
 interface Props {
   title: string;
@@ -20,7 +17,7 @@ export const PsychologistLayout: FC<Props> = ({
   pageDescription,
   imageFullUrl,
 }) => {
-  const [isMenuOpen, toggleSideMenu] = useState(false);
+  // const [isMenuOpen, toggleSideMenu] = useState(false);
   return (
     <>
       <Head>

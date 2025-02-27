@@ -1,11 +1,8 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
-// import { psiApi } from "../../axios-api";
 import DailyIframe, { DailyCall } from "@daily-co/daily-js";
 import { Box, IconButton } from "@mui/material";
 import { useSession } from "next-auth/react";
-import { Note, NoteAlt } from "@mui/icons-material";
-import { ThemeProvider } from "@emotion/react";
-import { noteTheme } from "@/app/_themes/note-theme";
+import { NoteAlt } from "@mui/icons-material";
 import NotesDrawer from "../notes/NotesDrawer";
 
 interface Props {
@@ -62,7 +59,6 @@ export const Call: FC<Props> = ({
       console.log("callFrame Creado, es: " + newCallFrame);
       setCallFrame(newCallFrame);
 
-      let participants;
       try {
         newCallFrame
           .join({ url: room, token: token })
@@ -70,25 +66,18 @@ export const Call: FC<Props> = ({
           .catch((reason) => console.log(reason))
           .catch((error) => console.log(error));
       } catch (error) {
-        // console.log("Falló esa mierda, esto dice:");
         console.log(error);
       }
-      // handleUpdateChecking();
 
       const leaveCall = async () => {
-        // console.log("Se llama leaveCall");
         if (callFrame) await callFrame.destroy();
         setRoom(null);
         setCallFrame(null);
-        // refreshData();
       };
 
       newCallFrame.on("left-meeting", leaveCall);
-      // console.log("Termina el ciclo");
     } else {
-      // console.log("Sí existe el bicho");
       await oldCall.destroy();
-      // console.log("Destruido");
       createAndJoinCall();
     }
   }, [session, callFrame, room, token, setCallFrame, setRoom]);
@@ -99,10 +88,7 @@ export const Call: FC<Props> = ({
   useEffect(() => {
     console.log("callFrame en Call es: " + callFrame);
     if (status === "authenticated" && !callFrame && room) {
-      // console.log("callFrame no existe: " + callFrame);
-      // console.log("username es:" + session?.user.firstName);
       createAndJoinCall();
-      // console.log("Ya hice lo mío");
     }
   }, [callFrame, createAndJoinCall, session, status, room]);
 

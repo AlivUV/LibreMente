@@ -1,7 +1,3 @@
-import { INote } from "./INote";
-// import { IUser } from "./user";
-import IUser from "./IUser";
-
 export interface IPreviousAppointment {
   _id?: string;
   patient: string;

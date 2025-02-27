@@ -1,4 +1,4 @@
-import React, { createContext, FC, useState } from "react";
+import React, { FC, useState } from "react";
 import {
   Grid,
   Box,
@@ -6,19 +6,11 @@ import {
   Button,
   Stack,
   CircularProgress,
-  TextField,
-  MenuItem,
 } from "@mui/material";
-import NextLink from "next/link";
 import IUser from "@/app/_interfaces/IUser";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import RegisterModal from "../register/RegisterModal";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
-import { es } from "date-fns/locale";
-import { esES } from "@mui/x-date-pickers/locales";
 import FieldForm from "./FieldForm";
 import ProfileFieldContext from "@/app/_contexts/ProfileFieldContext";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";

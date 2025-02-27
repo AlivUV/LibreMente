@@ -1,19 +1,12 @@
 "use client";
-import React, { FC, useState } from "react";
-import NextLink from "next/link";
-// import { ListSpecialties } from "../../components/psychologists";
+import React, { FC } from "react";
 import {
   Grid,
   Card,
   Box,
   Typography,
-  Button,
   CardContent,
-  Link,
-  Stack,
-  Rating,
   CardMedia,
-  Dialog,
 } from "@mui/material";
 import { IPsychologist } from "@/app/_interfaces/IPsychologist";
 import { useRouter } from "next/navigation";
@@ -21,19 +14,13 @@ import GoogleImage from "../ui/GoogleImage";
 import Roles from "@/app/_enums/Roles";
 import { useSession } from "next-auth/react";
 import { ContentTypes } from "./PsychologistList";
-import { getScheduleByPsychologist } from "@/app/_database/daos/scheduleDao";
-import { ISchedule } from "@/app/_interfaces/schedule/ISchedule";
-import { fetchScheduleByPsychologist } from "@/app/_utils/server actions/schedule";
-import { Schedule } from "@mui/icons-material";
 import {
-  CommentsButton,
   PreviousAppointmentsButton,
   ScheduleButton,
   SeeScheduleButton,
   UpcomingAppointmentsButton,
 } from "./CardButtons";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
-// import { IPsychologist } from "../../interfaces";
 
 interface Props {
   psychologist: IPsychologist;
@@ -63,7 +50,6 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
         psychologistId={psychologist._id!}
         setContent={setContent}
       />
-      // <CommentsButton />
     );
     return buttons;
   })();
@@ -102,15 +88,6 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
               {psychologist.fullName}
             </Typography>
 
-            {/* <Stack spacing={1} alignItems="center" sx={{ m: 2 }}>
-              <Rating
-                name="half-rating-read"
-                defaultValue={psychologist.calification}
-                precision={0.5}
-                readOnly
-              />
-            </Stack> */}
-
             <Box
               sx={{
                 display: "flex",
@@ -119,8 +96,6 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
               }}
             >
               {buttons}
-              {/* </Link> */}
-              {/* </NextLink> */}
             </Box>
           </Box>
         </CardContent>

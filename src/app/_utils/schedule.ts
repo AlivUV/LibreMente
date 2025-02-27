@@ -32,16 +32,12 @@ export function getAvailableHours(
     hours.push(hour),
   );
   appointments.map((appointment) => {
-    // console.log("Hay appointments, la fecha de la cita es " + appointment.date + " y la fecha entregada " + date);
     if (isSameDay(appointment.date, date)) {
-      // console.log("fecha obtenida: " + appointment.date);
       hours[new Date(appointment.date).getHours()] = false;
     }
   });
   if (isSameDay(date, new Date())) {
-    // if (!test) console.log("Mismo día");
     hours.fill(false, 0, getColombianHour());
-    // console.log(hours);
   }
 
   return hours;

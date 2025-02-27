@@ -1,10 +1,6 @@
-// import { Typography, Box } from "@mui/material";
-// import { PatientLayout } from "../../../components/layout/PatientLayout";
 import PatientLayout from "@/app/_components/layout/PatientLayout";
-// import { dbAppointment } from "../../../database";
 import { AppointmentList } from "@/app/_components/appointments/AppointmentList";
 import { EmptyAppointment } from "@/app/_components/appointments/EmptyAppointment";
-// import { getAppointmentsByPatient } from "@/database/dbAppointments";
 import Box from "@mui/material/Box/Box";
 import {
   getUpcomingAppointmentsByPsychologist,
@@ -24,15 +20,7 @@ const AppointmentPage = async ({
 }: {
   searchParams: { psychologist?: string };
 }) => {
-  // const session = await getServerSession(authOptions)
-  // const appointments = await getAppointmentsByPatient(
-  //   session?.user._id!
-  // );
   const session = await getMyServerSession();
-  // const appointments =
-  //   session?.user.role === Roles.Practicante
-  //     ? await getUpcomingAppointmentsByPsychologist(session?.psychologist?._id!)
-  //     : await getUpcomingAppointmentsByPatient(session?.user._id!);
   const appointments = await (async () => {
     switch (session?.user.role!) {
       case Roles.Practicante:
@@ -61,42 +49,5 @@ const AppointmentPage = async ({
     </PatientLayout>
   );
 };
-
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-
-// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-//   const session: any = await getSession({ req });
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/autenticacion/login?p=/app/citas/historial",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   if (session) {
-//     if (session.user.role !== "patient") {
-//       return {
-//         redirect: {
-//           destination: `/psicologo/home`,
-//           permanent: false,
-//         },
-//       };
-//     }
-//   }
-
-//   const appointments = await dbAppointment.getAppointmentsByPatient(
-//     session.user._id
-//   );
-
-//   return {
-//     props: {
-//       appointments,
-//     },
-//   };
-// };
 
 export default AppointmentPage;

@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-// import { psiApi } from "../../axios-api";
 import { useRouter } from "next/navigation";
 import {
   Button,
@@ -54,11 +53,6 @@ export const CalificationModal: FC<Props> = ({ appointmentId }) => {
     }
 
     try {
-      // await psiApi.put("/appointments/calification", {
-      //   id: appointmentId,
-      //   calification,
-      //   calificationComment,
-      // });
       router.replace(`/app/citas`);
     } catch (error) {
       setIsPosting(false);

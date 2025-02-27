@@ -1,5 +1,3 @@
-import { Schema } from "mongoose";
-import Roles from "../_enums/Roles";
 import { ReceiverTypes } from "../_enums/ReceiverTypes";
 import { NotificationTypes } from "../_enums/NotificationTypes";
 

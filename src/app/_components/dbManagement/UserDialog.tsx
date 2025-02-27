@@ -31,8 +31,6 @@ export default function UserDialog({
   handleClose: () => void;
 }) {
   console.log("Se recarga el dialog");
-  // const [assignedUsers, setAssignedUsers] = useState<string[]>([]);
-  // const [responsibleUser, setResponsibleUser] = useState<string>("");
   const dbUser = index === undefined ? index : users[index];
   const [editingAssignedUsers, setEditingAssignedUsers] = useState(false);
   const [editingResponsibleUser, setEditingResponsibleUser] = useState(false);
@@ -64,24 +62,6 @@ export default function UserDialog({
   };
   let newResponsibleUser: typeof responsibleUser;
 
-  // useEffect(() => {
-  //   if (dbUser) {
-  //     if (dbUser.role === Roles.Tutor || dbUser.role === Roles.Coordinador) {
-  //       fetchAssignedUsersById(dbUser._id!).then((users) =>
-  //         setAssignedUsers([...users.map((user) => user.fullName)])
-  //       );
-  //     }
-  //     if (dbUser.role === Roles.Practicante || dbUser.role === Roles.Tutor) {
-  //       if (dbUser.responsibleUser) {
-  //         fetchUserById(dbUser.responsibleUser?.toString()).then((user) =>
-  //           setResponsibleUser(user.fullName)
-  //         );
-  //       } else {
-  //         setResponsibleUser("Sin asignar");
-  //       }
-  //     }
-  //   }
-  // }, [dbUser, setAssignedUsers, setResponsibleUser]);
   function editAssignedUsers() {
     if (editingAssignedUsers) {
       Promise.all(

@@ -1,7 +1,6 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 import { connect } from "../_database/connection";
 import Request from "../_database/models/Request";
-import User from "../_database/models/User";
 import { IRequest } from "../_interfaces/IRequest";
 import { deleteFile, getAllFiles } from "./google-drive";
 
@@ -45,9 +44,9 @@ async function test() {
         ...requests.map((request) => ({
           _id: new mongoose.Types.ObjectId(request._id?.toString()!),
           fileId: request.supportingDocumentId,
-        })),
+        }))
       );
-    }),
+    })
   );
   Promise.all(promises).then(() => {
     console.log("to Delete:");
@@ -55,9 +54,9 @@ async function test() {
     return Promise.all(
       documentsToDelete.map((document) =>
         deleteFile(document.fileId).then(() =>
-          Request.deleteOne({ _id: document._id }),
-        ),
-      ),
+          Request.deleteOne({ _id: document._id })
+        )
+      )
     ).then((results) => console.log("Borrados", results.length, "elementos"));
   });
 }
@@ -67,7 +66,7 @@ async function test2() {
   await connect();
   const driveFiles = await getAllFiles();
   const requestsFiles = (await Request.find().lean()).map(
-    (request) => request.supportingDocumentId,
+    (request) => request.supportingDocumentId
   );
   let ac = 0;
   for (let i of driveFiles) {

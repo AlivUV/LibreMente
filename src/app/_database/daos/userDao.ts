@@ -35,7 +35,6 @@ export async function getUserById(id: string) {
 export async function getUserByEmail(email: string) {
   noStore();
   await connect();
-  // const user = await User.findOne({ email: email }).lean();
   const user: IUser[] = await User.aggregate(addAgePipeline).match({ email });
   console.log(user[0]);
   return user[0];

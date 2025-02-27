@@ -19,13 +19,7 @@ export default function GenderField({
   console.log("Custom gender es:", customGender);
   const options = [...defaultOptions, customGender, addOption];
   const [selection, setSelection] = useState(options[2]);
-  // if (defaultValue && selection !== defaultValue) setSelection(defaultValue);
   console.log("selection es:", selection);
-  // useEffect(() => {
-  //   if (customGender) {
-  //     setSelection(customGender);
-  //   }
-  // }, [customGender, setSelection]);
   useEffect(() => {
     if (defaultValue) {
       if (!defaultOptions.includes(defaultValue)) {

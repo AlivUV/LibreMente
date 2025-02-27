@@ -1,7 +1,3 @@
-import { IPreviousAppointment } from "./IPreviousAppointment";
-import { IPsychologist } from "./IPsychologist";
-import IUser from "./IUser";
-
 export interface INote {
   _id?: string;
   title: string;

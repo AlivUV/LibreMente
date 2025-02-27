@@ -11,13 +11,7 @@ import logoFooter from "@/../public/images/logo-footer.png";
 import Image from "next/image";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import XIcon from "@mui/icons-material/X";
-import {
-  Facebook,
-  Instagram,
-  LinkedIn,
-  Twitter,
-  YouTube,
-} from "@mui/icons-material";
+import { Facebook, Instagram, LinkedIn, YouTube } from "@mui/icons-material";
 import { useState } from "react";
 import CreditsDialog from "./CreditsDialog";
 

@@ -1,4 +1,3 @@
-import PatientFilters from "@/app/_enums/reports/PatientFilters";
 import PsychologistFilters from "@/app/_enums/reports/PsychologistFilters";
 import Roles from "@/app/_enums/Roles";
 import { UserStates } from "@/app/_enums/UserStates";

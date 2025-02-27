@@ -28,15 +28,12 @@ export default function AddPeriodModal({
   let dia: IDay["day"];
   let horaInicial: number;
   let horaFinal: number;
-  // console.log("el estado de la modal es:" + state);
 
   function handleUpdate() {
     const i = days.indexOf(dia);
     for (let j = horaInicial; j <= horaFinal; j++) {
-      // schedule.hours[i] = true;
       schedule[i].hours[j] = state === ModalStates.Add ? true : false;
     }
-    // console.log("Ahora las horas son: " + schedule.hours);
     setSchedule([...schedule]);
     close();
   }

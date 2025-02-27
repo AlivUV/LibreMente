@@ -1,5 +1,4 @@
 import React, { FC, useState } from "react";
-// import { psiApi } from "../../axios-api";
 import { useRouter } from "next/navigation";
 import {
   Button,
@@ -45,10 +44,6 @@ export const CancelModal: FC<Props> = ({ appointmentId }) => {
     setIsPosting(true);
 
     try {
-      // await psiApi.put("/appointments/cancel", {
-      //   id: appointmentId,
-      //   cancelReason,
-      // });
       router.replace(`/app/citas`);
     } catch (error) {
       setIsPosting(false);

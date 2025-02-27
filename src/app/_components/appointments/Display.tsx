@@ -4,26 +4,16 @@ import Avatar from "@mui/material/Avatar/Avatar";
 import Box from "@mui/material/Box/Box";
 import Grid from "@mui/material/Grid/Grid";
 import Paper from "@mui/material/Paper/Paper";
-import Rating from "@mui/material/Rating/Rating";
-import Stack from "@mui/material/Stack/Stack";
-import TextField from "@mui/material/TextField/TextField";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup/ToggleButtonGroup";
 import Typography from "@mui/material/Typography/Typography";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker/DatePicker";
 import AppointmentDatePicker from "./AppointmentDatePicker";
 import { getScheduleById } from "@/app/_database/daos/scheduleDao";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
-// import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3"
-// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-// import { es } from "date-fns/locale";
 
 export default async function PsychologistDisplay({
   psychologist,
 }: {
   psychologist: IPsychologist;
 }) {
-  const service = "Servicio";
-  const date = new Date(2014, 4, 18);
   const appointments = await getUpcomingAppointmentsByPsychologist(
     psychologist._id!
   );
@@ -68,14 +58,6 @@ export default async function PsychologistDisplay({
           >
             {psychologist.fullName}
           </Typography>
-          {/* <Stack spacing={1} alignItems="center" sx={{ m: 1 }}>
-            <Rating
-              name="half-rating-read"
-              defaultValue={psychologist.calification}
-              precision={0.5}
-              readOnly
-            />
-          </Stack> */}
         </Paper>
       </Grid>
       <Grid item xs={12}>

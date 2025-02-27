@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import RoleCard from "./RoleCard";
-import { useState } from "react";
 import Roles from "@/app/_enums/Roles";
 
 export default function RoleCardList({
@@ -10,15 +9,8 @@ export default function RoleCardList({
   selectedRole: Roles;
   setSelectedRole: (role: Roles) => void;
 }) {
-  // const [selection, setSelected] = useState(Roles.Consultante);
   return (
     <Box display="flex" justifyContent="space-evenly" sx={{ py: 5 }}>
-      {/* <RoleCard
-                role={Roles.Consultante}
-                description="Una descripción"
-                selection={selection}
-                setSelected={setSelected}
-            /> */}
       <RoleCard
         role={Roles.Practicante}
         description="Uno de los roles más importantes de la plataforma.
@@ -46,12 +38,6 @@ export default function RoleCardList({
         selection={selectedRole}
         setSelected={setSelectedRole}
       />
-      {/* <RoleCard
-                role={Roles.Administrador}
-                description="Una descripción"
-                selection={selection}
-                setSelected={setSelected}
-            /> */}
     </Box>
   );
 }

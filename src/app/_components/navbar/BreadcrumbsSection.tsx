@@ -1,7 +1,5 @@
 import { Breadcrumbs, Link, Typography } from "@mui/material";
-import { IPath } from "html2canvas/dist/types/render/path";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 function MiddleBreadcrumb({
   key,

@@ -1,25 +1,20 @@
-import { getUserById } from "@/app/_database/daos/userDao";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import { RequestStates } from "@/app/_enums/RequestStates";
 import { IRequest } from "@/app/_interfaces/IRequest";
 import IUser from "@/app/_interfaces/IUser";
-import { FILES } from "@/app/_utils/endpoints";
 import { answerRequest } from "@/app/_utils/server actions/request";
-import { fetchUserById } from "@/app/_utils/server actions/user";
 import {
   Avatar,
-  Box,
   Button,
   Dialog,
   DialogTitle,
   Divider,
   Grid,
-  List,
   Skeleton,
   TextField,
 } from "@mui/material";
 import Link from "next/link";
-import { MouseEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -61,9 +56,6 @@ export default function RequestModal({
       </>
     );
   }
-  // const [user, setUser] = useState<IUser | null>(null);
-  // const [documentSrc, setDocumentSrc] = useState("");
-  // const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState("");
 
   function handleClick(state: RequestStates) {

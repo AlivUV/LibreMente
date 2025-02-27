@@ -6,10 +6,5 @@ export async function GET(
   { params }: { params: { fileId: string } },
 ) {
   const driveResponse = await getFile(params.fileId);
-  const blob = new Blob();
-  // const reader = new FileReader();
-  // let result;
-  // reader.onload = (e) => {result = e.target?.result};
-  // reader.readAsDataURL(driveResponse);
   return new NextResponse(driveResponse, { status: 200, statusText: "OK" });
 }

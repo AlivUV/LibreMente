@@ -1,8 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button/Button";
-import Link from "@mui/material/Link/Link";
 import Typography from "@mui/material/Typography/Typography";
-//import { HeroLayout } from "./HeroLayout";
 import NextLink from "next/link";
 import { HeroLayout } from "./HeroLayout";
 

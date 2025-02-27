@@ -8,7 +8,7 @@ import { PersonalInfo } from "./PersonalInfo";
 import { UploadProfilePicture } from "./UploadProfilePicture";
 
 export default function ProfileDisplay() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [pendingRequests, setPendingRequests] = useState(true);
   useEffect(() => {
     if (session) {

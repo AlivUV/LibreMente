@@ -5,23 +5,16 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
-  Paper,
-  PaperProps,
-  Slide,
   Tab,
   Tabs,
-  withStyles,
 } from "@mui/material";
-import { TransitionProps } from "@mui/material/transitions";
-import React, { JSXElementConstructor, ReactElement, useState } from "react";
-import Draggable from "react-draggable";
+import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import EditNotePanel from "./drawer panels/EditNotePanel";
 import ListNotesPanel from "./drawer panels/ListNotesPanel";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import "@/app/_styles/notes/notes-drawer.css";
 import { INote } from "@/app/_interfaces/INote";
-import { fetchNotesByPatient } from "@/app/_utils/server actions/note";
 import { useSession } from "next-auth/react";
 import styles from "@/app/_styles/notes/notesTest.module.css";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";

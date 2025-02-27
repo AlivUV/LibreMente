@@ -1,17 +1,6 @@
 import ProfileFieldContext from "@/app/_contexts/ProfileFieldContext";
-import { Grid, TextField, MenuItem, Button, Dialog } from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
-import { esES } from "@mui/x-date-pickers/locales";
-import { es } from "date-fns/locale";
-import {
-  ChangeEventHandler,
-  HTMLInputTypeAttribute,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import GenderDialog from "./GenderDialog";
+import { Grid, TextField, MenuItem, Button } from "@mui/material";
+import { HTMLInputTypeAttribute, useContext } from "react";
 import GenderField from "./GenderField";
 import DateField from "./DateField";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";

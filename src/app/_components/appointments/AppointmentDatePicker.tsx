@@ -84,7 +84,6 @@ export default function AppointmentDatePicker({
   schedule: ISchedule;
   psychologist: IPsychologist;
 }) {
-  // const [state, setState] = useState<IState>({});
   const currentDate = new Date();
   currentDate.setHours(0, 0, 0, 0);
   const [state, dispatcher] = useReducer(reducer, {
@@ -93,9 +92,7 @@ export default function AppointmentDatePicker({
     appointments: appointments,
   });
   const { data: session } = useSession();
-  // const router = useRouter();
   let hour: number;
-  //const trueSchedule = processAvailability(schedule, appointments);
   function isDisabled(date: Date) {
     return !isDayAvailable(date, state.appointments, schedule);
   }
@@ -143,13 +140,6 @@ export default function AppointmentDatePicker({
               body: newValue,
             })
           }
-          // label="Selecciona una fecha"
-          // onChange={(newValue: any) => {
-          //   newValue && setDate(newValue);
-          //   setHour("");
-          //   setService("");
-          // }}
-          // renderInput={(params: any) => <TextField {...params} />}
         />
       </LocalizationProvider>
       <Grid container spacing={2}>

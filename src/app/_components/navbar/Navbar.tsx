@@ -1,22 +1,19 @@
 "use client";
 import {
   AppBar,
-  Badge,
   Box,
-  Breadcrumbs,
   Button,
   Divider,
   IconButton,
   Link,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import { UiContext } from "@/app/_contexts/ui/UiContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import NextLink from "next/link";
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, NotificationsNoneOutlined } from "@mui/icons-material";
+import { Menu } from "@mui/icons-material";
 import NotificationsButton from "./notifications/NotificationsButton";
 import Roles from "@/app/_enums/Roles";
 import { SideMenu } from "../ui/SideMenu/SideMenu";

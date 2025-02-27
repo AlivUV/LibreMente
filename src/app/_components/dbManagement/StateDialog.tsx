@@ -1,10 +1,7 @@
 import Roles from "@/app/_enums/Roles";
 import { UserStates } from "@/app/_enums/UserStates";
 import IUser from "@/app/_interfaces/IUser";
-import {
-  saveUserById,
-  saveUserStateById,
-} from "@/app/_utils/server actions/user";
+import { saveUserStateById } from "@/app/_utils/server actions/user";
 import {
   Button,
   Dialog,

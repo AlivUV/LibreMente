@@ -9,12 +9,6 @@ import { getMyServerSession } from "@/app/_utils/next-auth";
 import { redirect } from "next/navigation";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 
-// import { PsychologistLayout } from "../../../components/layout";
-
-// import { IAppointment, IUser } from "../../../interfaces";
-// import { dbAppointment, dbPatients } from "../../../database";
-// import { SessionClinicHistoryList } from "../../../components/session/SessionClinicHistoryList";
-
 interface Props {
   //   patient: IUser;
   //   appointments: IPreviousAppointment[];
@@ -82,58 +76,5 @@ const PatientInfoPage: NextPage<Props> = async ({ params }) => {
     </PsychologistLayout>
   );
 };
-
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-
-// export const getServerSideProps: GetServerSideProps = async ({
-//   req,
-//   query,
-// }) => {
-//   const { id = "" } = query;
-//   const session: any = await getSession({ req });
-
-//   if (session) {
-//     if (session.user.role !== "psychologist") {
-//       return {
-//         redirect: {
-//           destination: `/app/home`,
-//           permanent: false,
-//         },
-//       };
-//     }
-//   }
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: `/autenticacion/login?p=/psicologo/pacientes/${id}`,
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   const patient = await dbPatients.getPatientById(id.toString());
-//   const appointments = await dbAppointment.getAppointmentsToClinicHistory(
-//     session.user._id,
-//     id.toString()
-//   );
-
-//   if (!patient) {
-//     return {
-//       redirect: {
-//         destination: "/psicologo/pacientes",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       patient,
-//       appointments,
-//     },
-//   };
-// };
 
 export default PatientInfoPage;

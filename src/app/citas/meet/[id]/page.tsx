@@ -21,7 +21,6 @@ interface Props {
 }
 
 const MeetPage: NextPage<Props> = async ({ params }) => {
-  // const router = useRouter();
   let pastAppointment: IPreviousAppointment | null;
   const appointment = await getUpcomingAppointmentById(params.id);
   if (!appointment) {
@@ -33,8 +32,6 @@ const MeetPage: NextPage<Props> = async ({ params }) => {
   const session = await getServerSession(authOptions);
   console.log("Y esta es la session");
   console.log(session?.user);
-  // console.log(`comparando los ids ${session?.user._id} y ${appointment?.user}, el resultado es ${session?.user._id == appointment?.user}
-  // y sus tipos son ${typeof session?.user._id} y ${typeof appointment?.user}`);
   function canJoin() {
     switch (session?.user.role) {
       case Roles.Consultante:

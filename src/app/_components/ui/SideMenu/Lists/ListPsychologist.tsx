@@ -1,25 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   AccountCircleOutlined,
-  CreditCardOutlined,
   DateRangeOutlined,
   EditCalendar,
   HistoryOutlined,
-  HistoryToggleOffOutlined,
-  KeyOutlined,
-  SchoolOutlined,
   SupervisedUserCircleOutlined,
   TextSnippetOutlined,
 } from "@mui/icons-material";
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import { UiContext } from "@/app/_contexts/ui/UiContext";
-import { useRouter } from "next/navigation";
+import { List } from "@mui/material";
 import MenuItem from "../MenuItem";
 
 export default function ListPsychologist() {

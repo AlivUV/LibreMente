@@ -1,11 +1,4 @@
 import type { Metadata, NextPage } from "next";
-// import { getSession } from "next-auth/react";
-// import { GetServerSideProps } from "next";
-// import { PatientLayout } from "../../../components/layout/PatientLayout";
-// import { dbAppointment } from "../../../database";
-// import { IAppointment } from "../../../interfaces";
-// import { AppointmentHistoryList } from "../../../components/appointment";
-// import { EmptyAppointment } from "../../../components/ui";
 
 import PatientLayout from "@/app/_components/layout/PatientLayout";
 import { EmptyAppointment } from "@/app/_components/appointments/EmptyAppointment";
@@ -16,7 +9,6 @@ import {
 } from "@/app/_database/daos/previousAppointmentDao";
 import { AppointmentList } from "@/app/_components/appointments/AppointmentList";
 import Box from "@mui/material/Box/Box";
-import Typography from "@mui/material/Typography/Typography";
 import Roles from "@/app/_enums/Roles";
 import PageHeader from "@/app/_components/PageHeader";
 
@@ -30,10 +22,6 @@ interface Props {
 
 const HistoryAppointmentPage: NextPage<Props> = async ({ searchParams }) => {
   const session = await getMyServerSession();
-  // const appointments =
-  //   session?.user.role === Roles.Practicante
-  //     ? await getPreviousAppointmentsByPsychologist(session?.psychologist?._id!)
-  //     : await getPreviousAppointmentsByPatient(session?.user._id!);
   const appointments = await (async () => {
     switch (session?.user.role!) {
       case Roles.Practicante:
@@ -66,42 +54,5 @@ const HistoryAppointmentPage: NextPage<Props> = async ({ searchParams }) => {
     </PatientLayout>
   );
 };
-
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-
-// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-//   const session: any = await getSession({ req });
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/autenticacion/login?p=/app/citas/historial",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   if (session) {
-//     if (session.user.role !== "patient") {
-//       return {
-//         redirect: {
-//           destination: `/psicologo/home`,
-//           permanent: false,
-//         },
-//       };
-//     }
-//   }
-
-//   const appointments = await dbAppointment.getAppointmentsHistoryByPatient(
-//     session.user._id
-//   );
-
-//   return {
-//     props: {
-//       appointments,
-//     },
-//   };
-// };
 
 export default HistoryAppointmentPage;

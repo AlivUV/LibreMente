@@ -2,8 +2,6 @@ import { List } from "@mui/material";
 import MenuItem from "../MenuItem";
 import {
   AccountCircleOutlined,
-  AddCircleOutline,
-  AddCircleOutlineOutlined,
   FeedOutlined,
   StorageOutlined,
   SupervisorAccountOutlined,

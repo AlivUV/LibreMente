@@ -2,8 +2,6 @@ import { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-// import { convertTime } from "../../utils/time";
-// import { formatCurrency } from "../../utils/currency";
 
 interface Props {
   appointmentValues?: {
@@ -26,13 +24,6 @@ export const SessionSummary: FC<Props> = ({ appointmentValues }) => {
 
   return (
     <Grid container>
-      {/* <Grid item xs={6} sx={{ mt: 1 }}>
-        <Typography>Tipo de servicio</Typography>
-      </Grid>
-      <Grid item xs={6} sx={{ mt: 1 }} display="flex" justifyContent="end">
-        <Typography>{summaryValues.typeService} </Typography>
-      </Grid> */}
-
       <Grid item xs={6} sx={{ mt: 1 }}>
         <Typography color="text2.main">Fecha</Typography>
       </Grid>
@@ -50,13 +41,6 @@ export const SessionSummary: FC<Props> = ({ appointmentValues }) => {
           {format(summaryValues.date, "hh:mm aa", { locale: es })}
         </Typography>
       </Grid>
-
-      {/* <Grid item xs={6} sx={{ mt: 1 }}>
-        <Typography>Duración</Typography>
-      </Grid>
-      <Grid item xs={6} sx={{ mt: 1 }} display="flex" justifyContent="end">
-        <Typography>{`${summaryValues.duration} min`}</Typography>
-      </Grid> */}
     </Grid>
   );
 };

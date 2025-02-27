@@ -38,16 +38,6 @@ export default function DownloadButton({
       pdf.text("Generado el día " + date, pdfWidth - 90, 10);
       pdf.save(`Reporte Estumente ${format(new Date(), "dd/MM/yyyy")}.pdf`);
     });
-    // const pdf = new jsPDF();
-    // const element = pdfRef.current || "";
-    // pdf.html(element, {
-    //   callback: function (doc) {
-    //     doc.save("prueba.pdf");
-    //   },
-    //   x: 10,
-    //   y: 10,
-    //   html2canvas: { scale: 0.15 },
-    // });
   };
   return (
     <Button

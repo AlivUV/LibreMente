@@ -1,17 +1,8 @@
 "use client";
-import { Box, AppBar, Toolbar, Link, Typography } from "@mui/material";
 import Head from "next/head";
-import NextLink from "next/link";
 import React, { FC, ReactNode, useState } from "react";
-//import { NavbarSingle } from "../navbar";
-//import { Footer } from "../ui";
-import { ToastContainer } from "react-toastify";
-import Image from "next/image";
 
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "../navbar/Navbar";
-import { UiContext } from "@/app/_contexts/ui/UiContext";
-import { SideMenu } from "../ui/SideMenu/SideMenu";
 
 interface Props {
   title: string;
@@ -19,7 +10,7 @@ interface Props {
 }
 
 export const AuthLayout: FC<Props> = ({ children, title }) => {
-  const [isMenuOpen, toggleSideMenu] = useState(false);
+  // const [isMenuOpen, toggleSideMenu] = useState(false);
   return (
     <>
       <Head>

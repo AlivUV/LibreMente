@@ -1,21 +1,11 @@
-import React, { useContext } from "react";
-import { UiContext } from "@/app/_contexts/ui/UiContext";
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import React from "react";
+import { List } from "@mui/material";
 import {
   AccountCircleOutlined,
   DateRangeOutlined,
   HistoryOutlined,
-  KeyOutlined,
   ScheduleOutlined,
-  SupervisedUserCircleOutlined,
 } from "@mui/icons-material";
-import { useRouter } from "next/navigation";
 import MenuItem from "../MenuItem";
 
 export default function ListPatient() {

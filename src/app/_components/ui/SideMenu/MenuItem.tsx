@@ -1,5 +1,4 @@
 import { UiContext } from "@/app/_contexts/ui/UiContext";
-import { AccountCircleOutlined } from "@mui/icons-material";
 import {
   ListItemButton,
   ListItemIcon,

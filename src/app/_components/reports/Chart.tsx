@@ -1,12 +1,7 @@
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import { IReportResult } from "@/app/_interfaces/IReportResult";
 import { Box, Typography } from "@mui/material";
-import {
-  blueberryTwilightPalette,
-  blueberryTwilightPaletteDark,
-  cheerfulFiestaPalette,
-} from "@mui/x-charts/colorPalettes";
-import { PieItemId, PieValueType } from "@mui/x-charts/models";
+import { PieValueType } from "@mui/x-charts/models";
 import { pieArcLabelClasses, PieChart } from "@mui/x-charts/PieChart";
 import { useEffect, useState } from "react";
 

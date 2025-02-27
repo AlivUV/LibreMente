@@ -18,16 +18,10 @@ export default function CellButton({
   schedule: IDay[];
   loading?: boolean;
 }) {
-  // if (day === "Lunes" && hour === "00:00") {
-  //     console.log("La primera hora es: " + initialSelected);
-  // }
   const [selected, setSelected] = useState(initialSelected);
   if (initialSelected) {
-    // console.log(`Estoy seleccionado: ${day}, ${hour}`);
-    // console.log("mi selected es: " + selected);
   }
   useEffect(() => {
-    // console.log("cambia el botón");
     setSelected(initialSelected);
   }, [initialSelected, setSelected, schedule]);
   if (loading) return <Skeleton variant="rectangular" height="32px" />;
@@ -48,7 +42,6 @@ export default function CellButton({
         onClick={() => {
           schedule[day].hours[hour] = !selected;
           setSelected(!selected);
-          // console.log("Cambio");
         }}
         color={selected ? "primary" : "secondary"}
       />

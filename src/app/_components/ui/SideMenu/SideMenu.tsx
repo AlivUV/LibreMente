@@ -6,14 +6,8 @@ import List from "@mui/material/List/List";
 import ListItemIcon from "@mui/material/ListItemIcon/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText/ListItemText";
 import ListItem from "@mui/material/ListItem";
-import NextLink from "next/link";
 import { Avatar, ListItemAvatar, ListItemButton } from "@mui/material";
-import {
-  Build,
-  LoginOutlined,
-  LogoutOutlined,
-  SupervisedUserCircleOutlined,
-} from "@mui/icons-material";
+import { LoginOutlined, LogoutOutlined } from "@mui/icons-material";
 import { UiContext } from "../../../_contexts/ui/UiContext";
 import { signIn, signOut, useSession } from "next-auth/react";
 import ListPsychologist from "./Lists/ListPsychologist";
@@ -21,23 +15,11 @@ import ListPatient from "./Lists/ListPatient";
 import ListAdmin from "./Lists/ListAdmin";
 import ListCoordinator from "./Lists/ListCoordinator";
 import ListTutor from "./Lists/ListTutor";
-import MenuItem from "./MenuItem";
 import Roles from "@/app/_enums/Roles";
 import { SessionTimeContext } from "@/app/_contexts/SessionTimeContext";
 import { registerSessionTime } from "@/app/_utils/session-time";
-/*import { MenuItemPsychologist } from "./MenuItemPsychologist";
-import { ListPatient } from "./ListPatient";
-import { MenuItemAdmin } from "./MenuItemAdmin"; */
 
 export const SideMenu = () => {
-  /*   const router = useRouter();
-    const { isMenuOpen, toogleSideMenu } = useContext(UiContext);
-    const { user, isLoggedIn, logout } = useContext(AuthContext);
-  
-    const navigateTo = (url: string) => {
-      toogleSideMenu();
-      router.push(url);
-    }; */
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
   const { sessionTime, setSessionTime } = useContext(SessionTimeContext);
   const { data: session, status } = useSession();

@@ -1,7 +1,7 @@
 "use client";
 import React, { FC } from "react";
 import NextLink from "next/link";
-import { Typography, Box, Link, Button } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import { PersonOff } from "@mui/icons-material";
 
 interface Props {
@@ -25,11 +25,9 @@ export const EmptyPatient: FC<Props> = ({ message }) => {
             {message}
           </Typography>
           <NextLink href={`/psicologo/home`} passHref prefetch={false}>
-            {/* <Link> */}
             <Button color="secondary" className="card-btn">
               Regresar
             </Button>
-            {/* </Link> */}
           </NextLink>
         </Box>
       </Box>

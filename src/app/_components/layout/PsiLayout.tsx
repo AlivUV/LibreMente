@@ -1,10 +1,6 @@
 "use client";
 import Head from "next/head";
-import { ToastContainer } from "react-toastify";
-import Navbar from "@/app/_components/navbar/Navbar";
-import { SideMenu } from "../ui/SideMenu/SideMenu";
-import { UiContext } from "@/app/_contexts/ui/UiContext";
-import { FC, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 
 interface Props {
   title: string;
@@ -13,7 +9,7 @@ interface Props {
 }
 
 export default function PsiLayout({ children, title }: Props) {
-  const [isMenuOpen, toggleSideMenu] = useState(false);
+  // const [isMenuOpen, toggleSideMenu] = useState(false);
   return (
     <>
       <Head>

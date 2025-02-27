@@ -10,7 +10,6 @@ import "react-quill/dist/quill.snow.css";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
-// import ReactQuill from "react-quill";
 
 const modules = {
   toolbar: [

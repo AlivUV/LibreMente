@@ -1,8 +1,5 @@
 import { INote } from "@/app/_interfaces/INote";
-import {
-  fetchNotesByPatient,
-  filterNotes,
-} from "@/app/_utils/server actions/note";
+import { filterNotes } from "@/app/_utils/server actions/note";
 import {
   Divider,
   List,
@@ -11,15 +8,12 @@ import {
   ListItemText,
   Pagination,
   Skeleton,
-  TextField,
 } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import SearchField from "./SearchField";
 import NoteFilters from "@/app/_enums/NoteFilters";
 import styles from "@/app/_styles/notes/notesTest.module.css";
-import IUser from "@/app/_interfaces/IUser";
-import { fetchUserById } from "@/app/_utils/server actions/user";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 
 export default function ListNotesPanel({
@@ -60,7 +54,6 @@ export default function ListNotesPanel({
   return (
     <div className={styles["notes-panel"]}>
       <SearchField
-        // searchNotes={searchNotes}
         setFilter={setFilter}
         filterBy={filterBy}
         setFilterBy={setFilterBy}

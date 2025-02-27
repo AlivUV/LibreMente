@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import NextLink from "next/link";
 import { Typography, Box, Link, Button, Stack } from "@mui/material";
 import { VideocamOffOutlined } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
@@ -36,7 +35,6 @@ export const EndCall: FC<Props> = ({ joinTrigger, leaveTrigger }) => {
             className="card-btn"
             onClick={() => {
               joinTrigger!();
-              // router.refresh();
             }}
           >
             Volver a ingresar
@@ -49,7 +47,6 @@ export const EndCall: FC<Props> = ({ joinTrigger, leaveTrigger }) => {
                 router.push("/citas");
               }
               leaveTrigger();
-              // router.refresh();
             }}
           >
             {session?.user.role === Roles.Consultante

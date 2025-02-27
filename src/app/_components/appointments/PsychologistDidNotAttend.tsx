@@ -1,16 +1,12 @@
 import React, { FC, useState } from "react";
-// import { psiApi } from "../../axios-api";
 import { useRouter } from "next/navigation";
 import {
   Button,
   CircularProgress,
-  Rating,
-  TextField,
   Grid,
   Stack,
   Typography,
 } from "@mui/material";
-import { toast } from "react-toastify";
 
 interface Props {
   appointmentId: string;
@@ -25,21 +21,7 @@ export const PsychologistDidNotAttend: FC<Props> = ({ appointmentId }) => {
     router.replace(`/app/citas`);
   };
 
-  const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
-    // setIsPosting(true);
-    // try {
-    //   await psiApi.put("/appointments/notattend", {
-    //     id: appointmentId,
-    //   });
-    //   router.replace(`/app/citas`);
-    // } catch (error) {
-    //   setIsPosting(false);
-    //   toast.error("No fue actualizar la cita, vuelve a intentarlo", {
-    //     position: toast.POSITION.BOTTOM_CENTER,
-    //   });
-    // }
-  };
+  const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {};
 
   return (
     <form onSubmit={handleSave} noValidate>

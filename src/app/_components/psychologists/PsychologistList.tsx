@@ -1,14 +1,9 @@
 "use client";
 import { Dialog, DialogTitle, Grid } from "@mui/material";
 import React, { useState } from "react";
-// import { IPsychologist } from "../../interfaces";
 import { PsychologistCard } from "./PsychologistCard";
 import { IPsychologist } from "@/app/_interfaces/IPsychologist";
 import ScheduleTable from "../schedule/ScheduleTable";
-
-interface Props {
-  psychologists: IPsychologist[];
-}
 
 export enum ContentTypes {
   Schedule,
@@ -30,11 +25,7 @@ export const PsychologistList = ({
     setContent(newContent);
     setOpen(true);
   }
-  // const session = await getMyServerSession();
-  // const psychologists =
-  //   session?.user.role === Roles.Tutor
-  //     ? await getPsychologistsByTutor(session.user._id!)
-  //     : await getPsychologists();
+
   return (
     <>
       <Grid container spacing={4}>

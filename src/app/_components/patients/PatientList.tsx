@@ -2,8 +2,6 @@ import IUser from "@/app/_interfaces/IUser";
 import { Grid } from "@mui/material";
 import React, { FC } from "react";
 import { PatientCard } from "./PatientCard";
-// import { IUser } from "../../interfaces";
-// import { PatientCard } from "./PatientCard";
 
 interface Props {
   patients: IUser[];

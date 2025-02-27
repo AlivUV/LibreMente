@@ -1,6 +1,5 @@
 "use client";
 import React, { FC, useState } from "react";
-import NextLink from "next/link";
 import {
   Box,
   Button,
@@ -32,7 +31,6 @@ import { sendNotification } from "@/app/_utils/server actions/notification";
 import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
 import Roles from "@/app/_enums/Roles";
 import { useSession } from "next-auth/react";
-import IUser from "@/app/_interfaces/IUser";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 
 interface Props {
@@ -46,7 +44,6 @@ interface Props {
 
 export const AppointmentCard: FC<Props> = ({
   appointment,
-  psychologist,
   fullName,
   image,
   role,
@@ -73,18 +70,14 @@ export const AppointmentCard: FC<Props> = ({
         >
           <CardMedia
             component={GoogleImage}
-            // image={image}
-            // image={image}
             compAlt={fullName}
             compSrc={image}
-            // onLoad={() => setIsImageLoaded(true)}
             compStyle={{
               width: 120,
               height: 120,
               margin: 1,
               borderRadius: "50%",
             }}
-            // slotProps={{img: {referrerPolicy:"no-referrer"}}}
           />
         </Box>
         <Box
@@ -95,9 +88,6 @@ export const AppointmentCard: FC<Props> = ({
           }}
         >
           <CardContent sx={{ flex: "1 0 auto" }}>
-            {/* <Typography component="div" variant="subtitle1">
-              {`${appointment.typeService} con`}
-            </Typography> */}
             <Typography
               color="text2.main"
               component="div"
@@ -127,22 +117,6 @@ export const AppointmentCard: FC<Props> = ({
                 Ver información de la cita
               </Link>
             )}
-            {/* {!appointment.isPaid ? (
-              <Chip
-                label={`Pendiente de pago`}
-                color="error"
-                variant="outlined"
-                size="small"
-                icon={<CreditCardOffOutlined />}
-              />
-            ) : (
-              <Chip
-                label={appointment.state}
-                color="success"
-                variant="outlined"
-                size="small"
-              />
-            )} */}
           </CardContent>
         </Box>
         <Box flex={1} />
@@ -245,32 +219,6 @@ export const AppointmentCard: FC<Props> = ({
                     </Dialog>
                   </>
                 )}
-
-                {/* {!appointment.isPaid && (
-                  <CancelModal appointmentId={appointment._id} />
-                )} */}
-
-                {/* {appointment.checkinTimePsychologist &&
-                  appointment.endTime <= Date.now() / 1000 &&
-                  appointment.calification === 0 && (
-                    <CalificationModal appointmentId={appointment._id} />
-                  )} */}
-
-                {/* {!appointment.checkinTimePsychologist &&
-                  (appointment.endTime <= Date.now() / 1000 ||
-                    Date.now() / 1000 <= appointment.startTime - 7200) &&
-                  (appointment.state === "activa" ||
-                    appointment.state === "psicólogo no asistió") && (
-                    <NextLink
-                      href={`/app/citas/reagendar/${appointment._id}`}
-                      passHref
-                      prefetch={false}
-                    >
-                      <Button size="small" color="secondary" fullWidth>
-                        Reagendar cita
-                      </Button>
-                    </NextLink>
-                  )} */}
               </Stack>
             </Box>
           </CardActions>

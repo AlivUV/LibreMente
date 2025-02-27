@@ -1,5 +1,3 @@
-import { ITimespan } from "./ITimespan";
-
 export interface IDay {
   day:
     | "Lunes"

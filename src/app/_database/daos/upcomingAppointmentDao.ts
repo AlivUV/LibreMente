@@ -17,8 +17,6 @@ export async function getUpcomingAppointmentsByPsychologist(
   })
     .sort({ date: 1 })
     .lean();
-  // console.log("Ejemplo");
-  // console.log(appointments[0])
   console.log(
     "Encontrados " + appointments + " appointments. Saliendo del DAO..."
   );
@@ -34,8 +32,6 @@ export async function getUpcomingAppointmentsByPatient(patient: string) {
   })
     .sort({ date: 1 })
     .lean();
-  // console.log("Ejemplo");
-  // console.log(appointments[0])
   console.log(
     "Encontrados " + appointments + " appointments. Saliendo del DAO..."
   );
@@ -57,11 +53,6 @@ export async function createUpcomingAppointment(
   const result = await UpcomingAppointment.create(upcomingAppointment);
   console.log("La cita insertada es");
   console.log(result);
-  // return serialize(
-  //   await getUpcomingAppointmentsByPsychologist(
-  //     upcomingAppointment.psychologist
-  //   )
-  // );
   return serialize(result) as IUpcomingAppointment;
 }
 

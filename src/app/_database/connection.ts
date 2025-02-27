@@ -2,7 +2,6 @@ import mongoose, { Schema } from "mongoose";
 import { Service } from "./models/Service";
 import User from "./models/User";
 import Psychologist from "./models/Psychologist";
-import { ISchedule } from "@/app/_interfaces/schedule/ISchedule";
 
 async function connect() {
   if (mongoose.connection.readyState !== 1) {
@@ -13,8 +12,6 @@ async function connect() {
     } catch (error) {
       console.log(error);
     }
-  } else {
-    // console.log("Ya existe una conexión");
   }
 }
 

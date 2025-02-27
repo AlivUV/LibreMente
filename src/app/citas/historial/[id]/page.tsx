@@ -19,17 +19,6 @@ import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
-// import { PsychologistLayout } from "../../../components/layout";
-
-// import { IAppointment } from "../../../interfaces";
-// import { dbAppointment } from "../../../database";
-// import {
-//   CardPatientAppointment,
-//   SessionSummary,
-// } from "../../../components/session";
-
-// import { toast } from "react-toastify";
-// import { psiApi } from "../../../axios-api";
 
 export type OrderResponseBody = {
   id: string;
@@ -97,48 +86,15 @@ export default async function AppointmentPage({
                   }}
                 />
                 <Divider sx={{ my: 3 }} />
-                {/* {notes.length > 0  (
-                  <NotesCard notes={notes} />
-                ) : (
-                  <Typography variant="h2">
-                    No se tomaron notas durante esta sesión
-                  </Typography>
-                )} */}
                 {notes && notes.length > 0 && <NotesCard notes={notes} />}
                 {notes && notes.length === 0 && (
                   <Typography variant="h6" color="text2.main">
                     No se tomaron notas durante esta sesión
                   </Typography>
                 )}
-                {/* <Box sx={{ mt: 3 }} display="flex" flexDirection="column">
-                  {appointment.isPaid && (
-                    <NextLink
-                      href={`/app/citas/meet/${appointment._id}`}
-                      passHref
-                      prefetch={false}
-                    >
-                      <Button
-                        size="small"
-                        color="secondary"
-                        fullWidth
-                        disabled={
-                          appointment.startTime >= Date.now() / 1000 ||
-                          appointment.endTime <= Date.now() / 1000
-                        }
-                      >
-                        {appointment.endTime <= Date.now() / 1000
-                          ? "Sesión finalizada"
-                          : "Ingresar a la sesión"}
-                      </Button>
-                    </NextLink>
-                  )}
-                </Box> */}
               </CardContent>
             </Card>
           </Grid>
-          {/* <Grid xs={12} sm={6}>
-            <NotesCard notes={notes} />
-          </Grid> */}
         </Grid>
       </Box>
     </PsychologistLayout>

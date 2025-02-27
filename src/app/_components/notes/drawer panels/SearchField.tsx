@@ -11,26 +11,19 @@ import {
   IconButton,
   TextFieldProps,
 } from "@mui/material";
-import { SlotCommonProps } from "@mui/material/utils/types";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { esES } from "@mui/x-date-pickers/locales";
 import { es } from "date-fns/locale";
 import { useState } from "react";
 
-const sTextField = () => (
-  <TextField label="Fecha" size="small" variant="standard" />
-);
-
 export default function SearchField({
-  // searchNotes,
   setFilter,
   filterBy,
   setFilterBy,
   trigger,
   filterPatient,
 }: {
-  // searchNotes: (filterBy: string | Date, filterBy: NoteFilters) => void,
   setFilter: (filter: string | Date) => void;
   filterBy: NoteFilters;
   setFilterBy: (filterBy: NoteFilters) => void;
@@ -57,7 +50,6 @@ export default function SearchField({
   function handleClick() {
     setFilter(filterBy !== NoteFilters.Date ? title : (date as Date));
     trigger(true);
-    // searchNotes(filterBy === NoteFilters.Title ? title : date as Date, filterBy);
   }
   return (
     <Stack direction="row" spacing={2} justifyContent="center" mb="10px">

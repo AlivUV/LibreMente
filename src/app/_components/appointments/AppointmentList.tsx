@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import { AppointmentCard } from "./AppointmentCard";
 import { IUpcomingAppointment } from "@/app/_interfaces/IUpcomingAppointment";
 import { getPsychologistById } from "@/app/_database/daos/psychologistDao";
-import { compareAsc } from "date-fns";
 import { getMyServerSession } from "@/app/_utils/next-auth";
 import { getUserById } from "@/app/_database/daos/userDao";
 import { IPreviousAppointment } from "@/app/_interfaces/IPreviousAppointment";
@@ -15,17 +14,8 @@ interface Props {
 }
 
 export const AppointmentList: FC<Props> = async ({ appointments, history }) => {
-  // function helper(
-  //   appointmentLeft: IUpcomingAppointment | IPreviousAppointment,
-  //   appointmentRight: IUpcomingAppointment | IPreviousAppointment
-  // ) {
-  //   const a = new Date(appointmentLeft.date);
-  //   const b = new Date(appointmentRight.date);
-  //   return compareAsc(a, b);
-  // }
   const session = await getMyServerSession();
 
-  // appointments.sort(helper);
   return (
     <Grid container spacing={4}>
       {appointments.map(async (appointment) => {
@@ -35,7 +25,6 @@ export const AppointmentList: FC<Props> = async ({ appointments, history }) => {
         console.log(`Psicólogo: ${psychologist}`);
         const user = await getUserById(appointment.patient);
         console.log(`Paciente: ${user}`);
-        // const role = session?.user.role;
         const { fullName, image, role } = (() => {
           let fullName = "",
             image = "",

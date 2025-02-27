@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import NextLink from "next/link";
 import {
   Grid,
@@ -8,21 +8,17 @@ import {
   Typography,
   Button,
   CardContent,
-  Link,
   CardMedia,
 } from "@mui/material";
 import IUser from "@/app/_interfaces/IUser";
 import GoogleImage from "../ui/GoogleImage";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
-// import { IUser } from "../../interfaces";
 
 interface Props {
   patient: IUser;
 }
 
 export const PatientCard: FC<Props> = ({ patient }) => {
-  // const [isImageLoaded, setIsImageLoaded] = useState(false);
-
   return (
     <Grid item xs={12} sm={6} md={6} lg={4}>
       <Card variant="outlined" className="fadeIn">
@@ -37,7 +33,6 @@ export const PatientCard: FC<Props> = ({ patient }) => {
             component={GoogleImage}
             compSrc={patient.profilePicture!}
             compAlt={patient.fullName}
-            // onLoad={() => setIsImageLoaded(true)}
             compStyle={{
               width: 120,
               height: 120,
@@ -47,10 +42,7 @@ export const PatientCard: FC<Props> = ({ patient }) => {
           />
         </Box>
         <CardContent>
-          <Box
-            // sx={{ display: isImageLoaded ? "block" : "none" }}
-            className="fadeIn"
-          >
+          <Box className="fadeIn">
             <Typography
               fontWeight={FontWeightValues.Semibold}
               color="inherit"
@@ -72,7 +64,6 @@ export const PatientCard: FC<Props> = ({ patient }) => {
                 passHref
                 prefetch={false}
               >
-                {/* <Link> */}
                 <Button
                   size="small"
                   color="secondary"
@@ -81,7 +72,6 @@ export const PatientCard: FC<Props> = ({ patient }) => {
                 >
                   Ver historia clínica
                 </Button>
-                {/* </Link> */}
               </NextLink>
             </Box>
           </Box>

@@ -1,5 +1,4 @@
 import { UserStates } from "../_enums/UserStates";
-import IUser from "./IUser";
 
 export interface IPsychologist {
   _id?: string;

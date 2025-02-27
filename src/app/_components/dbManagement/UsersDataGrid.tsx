@@ -29,7 +29,6 @@ export default function UsersDataGrid({ users }: { users: IUser[] }) {
     Rol: user.role,
     Estado: user.state,
   }));
-  // const [selectedUser, setSelectedUser] = useState<IUser>();
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [open, setOpen] = useState(false);
   const apiRef = useGridApiRef();
