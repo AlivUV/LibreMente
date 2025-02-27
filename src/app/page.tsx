@@ -2,16 +2,25 @@
 import { Box, Button, Paper } from "@mui/material";
 import Image from "next/image";
 import Carousel from "react-material-ui-carousel";
-import banner1 from "@/../public/images/banner1.jpg";
-import banner2 from "@/../public/images/banner2.jpg";
-import banner3 from "@/../public/images/banner3.jpg";
 import QuoteContainer from "./_components/home/QuoteContainer";
 import BackgroundQuote from "./_components/home/BackgroundQuote";
 import VideoContainer from "./_components/home/VideoContainer";
 import Footer from "./_components/home/Footer";
 
+const getImages = (baseName: String) => {
+  let i: number = 1;
+  let images = [];
+  try {
+    let image;
+    while ((image = require(`@/../public/images/${baseName}${i++}.jpg`)))
+      images.push(image);
+  } finally {
+    return images;
+  }
+};
+
 export default function Home() {
-  const banners = [banner1, banner2, banner3];
+  const banners = getImages("banner");
   return (
     <Box>
       <Carousel
@@ -53,20 +62,6 @@ export default function Home() {
             />
           </Box>
         ))}
-        {/* <Box className="recursiveBox" display="flex">
-        <Image
-          src={random}
-          alt="primer banner"
-          style={{ maxWidth: "100%", height: "100vh", objectFit: "cover" }}
-        />
-      </Box>
-      <Box className="recursiveBox" display="flex">
-        <Image
-          src={random2}
-          alt="segundo banner"
-          style={{ maxWidth: "100%", height: "100vh", objectFit: "cover" }}
-        />
-      </Box> */}
       </Carousel>
       <QuoteContainer />
       <BackgroundQuote />
