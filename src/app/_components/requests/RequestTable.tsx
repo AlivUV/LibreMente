@@ -39,7 +39,7 @@ export default function RequestTable({ requests }: { requests: IRequest[] }) {
           <TableHead
             sx={{
               "*": {
-                backgroundColor: "#CC0000",
+                backgroundColor: "#EA6F13",
                 color: "white !important",
                 borderLeft: 1,
                 fontWeight: `${FontWeightValues.Semibold} !important`,

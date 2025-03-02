@@ -15,7 +15,7 @@ let lightTheme = createTheme({
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#CC0000",
+      main: "#EA6F13",
       contrastText: "#ffffff",
     },
     info: {
@@ -102,8 +102,7 @@ let lightTheme = createTheme({
       styleOverrides: {
         root: {
           border: "3px solid transparent",
-          background:
-            "linear-gradient(white, white) padding-box, linear-gradient(90deg, rgb(153,0,0) 0%, rgba(255,75,75) 100%) border-box",
+          backgroundColor: "#EA6F13",
         },
       },
     },
