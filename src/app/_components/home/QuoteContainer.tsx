@@ -8,7 +8,7 @@ export default function QuoteContainer() {
         vida espiritual y la vida profesional. Necesito recuperar mi
         equilibrio”.
       </Typography>
-      <Typography variant="h5" color="secondary.main" textAlign="center">
+      <Typography variant="h5" color="primary.main" textAlign="center">
         {"(Tiger Woods)."}
       </Typography>
     </Box>

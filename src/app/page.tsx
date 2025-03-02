@@ -22,7 +22,7 @@ const getImages = (baseName: String) => {
 export default function Home() {
   const banners = getImages("banner");
   return (
-    <Box>
+    <Box sx={{ paddingTop: "6em" }}>
       <Carousel
         className="justAClassname"
         indicatorIconButtonProps={{

@@ -19,8 +19,8 @@ export default function Footer() {
   const [open, setOpen] = useState(false);
   return (
     <Box
-      bgcolor="secondary.main"
-      color="secondary.contrastText"
+      bgcolor="primary.main"
+      color="primary.contrastText"
       display="flex"
       alignItems="center"
       flexDirection="column"

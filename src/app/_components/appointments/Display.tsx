@@ -27,7 +27,7 @@ export default async function PsychologistDisplay({
           sx={{
             padding: "10px",
             flexGrow: 1,
-            backgroundColor: "secondary.main",
+            backgroundColor: "primary.main",
           }}
         >
           <Typography

@@ -11,7 +11,8 @@ let lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#1E1E1E",
+      main: "#004b70",
+      contrastText: "#ffffff",
     },
     secondary: {
       main: "#CC0000",
@@ -41,8 +42,7 @@ let lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          background:
-            " linear-gradient(90deg, rgb(153,0,0) 0%, rgba(255,75,75) 100%)",
+          backgroundColor: "#004b70",
         },
       },
     },

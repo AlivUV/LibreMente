@@ -12,7 +12,7 @@ export default function VideoContainer() {
     <Box py={5} display="flex" flexDirection="column" alignItems="center">
       <Typography
         variant="h2"
-        color="secondary.main"
+        color="primary.main"
         fontWeight={FontWeightValues.Extrabold}
         p={3}
         sx={{ width: "100%" }}
