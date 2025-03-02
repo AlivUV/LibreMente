@@ -21,7 +21,7 @@ import { SessionTimeContext } from "@/app/_contexts/SessionTimeContext";
 import { registerSessionTime } from "@/app/_utils/session-time";
 import BreadcrumbsSection from "./BreadcrumbsSection";
 import Image from "next/image";
-import logo from "@/../public/images/logo-navbar.png";
+import logo from "@/../public/images/logo-blanco.png";
 
 const Navbar = () => {
   console.log("Se renderiza Navbar");

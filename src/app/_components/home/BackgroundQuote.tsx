@@ -1,7 +1,6 @@
 import background from "@/../public/images/backgroundQuote.jpg";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
-// import logo from "@/../public/images/logo-navbar.png";
 
 export default function BackgroundQuote() {
   return (

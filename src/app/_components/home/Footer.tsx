@@ -7,8 +7,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import logoFooter from "@/../public/images/logo-footer.png";
-import Image from "next/image";
+// import logoFooter from "@/../public/images/logo-color.png";
+// import Image from "next/image";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import XIcon from "@mui/icons-material/X";
 import { Facebook, Instagram, LinkedIn, YouTube } from "@mui/icons-material";
@@ -32,7 +32,7 @@ export default function Footer() {
     >
       <Grid container spacing={2} columns={17} px={7} py={3}>
         <Grid item xs={17} sm={6} lg={3}>
-          <Image src={logoFooter} alt="Logo de Univalle" />
+          {/* <Image src={logoFooter} alt="Logo de la universidad" /> */}
         </Grid>
         <Grid item xs={17} sm={6} lg={3}>
           <Typography fontWeight={FontWeightValues.Semibold}>
