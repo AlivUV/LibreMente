@@ -8,7 +8,12 @@ export default function BackgroundQuote() {
       <Image
         src={background}
         alt="Fondo"
-        style={{ objectFit: "cover", height: "100%", width: "100%" }}
+        style={{
+          objectPosition: "50% 60%",
+          objectFit: "cover",
+          height: "100%",
+          width: "100%",
+        }}
       />
       <Typography
         position="relative"

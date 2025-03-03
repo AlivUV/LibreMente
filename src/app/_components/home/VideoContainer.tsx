@@ -5,13 +5,13 @@ import { useEffect } from "react";
 
 export default function VideoContainer() {
   useEffect(() => {
-    const player = YouTubePlayer("video-player", { videoId: "k47m3jbhumA" });
+    const player = YouTubePlayer("video-player", { videoId: "382Zu1DxY5s" });
   }, []);
 
   return (
     <Box py={5} display="flex" flexDirection="column" alignItems="center">
       <Typography
-        variant="h2"
+        variant="h3"
         color="primary.main"
         fontWeight={FontWeightValues.Extrabold}
         p={3}
