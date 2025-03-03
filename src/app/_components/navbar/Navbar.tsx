@@ -11,8 +11,8 @@ import {
 import { UiContext } from "@/app/_contexts/ui/UiContext";
 import { useContext, useEffect } from "react";
 import NextLink from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import { Menu } from "@mui/icons-material";
 import NotificationsButton from "./notifications/NotificationsButton";
 import Roles from "@/app/_enums/Roles";

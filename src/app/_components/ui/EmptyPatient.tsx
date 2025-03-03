@@ -24,7 +24,7 @@ export const EmptyPatient: FC<Props> = ({ message }) => {
           <Typography align="center" gutterBottom>
             {message}
           </Typography>
-          <NextLink href={`/psicologo/home`} passHref prefetch={false}>
+          <NextLink href={`/`} passHref prefetch={false}>
             <Button color="secondary" className="card-btn">
               Regresar
             </Button>

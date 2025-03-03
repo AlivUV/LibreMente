@@ -123,7 +123,7 @@ export default function AppointmentDatePicker({
               color: "#333333",
             },
             ".MuiPickersCalendarHeader-root": {
-              color: "#CC0000",
+              color: "#004b70",
             },
             ".Mui-selected": {
               backgroundColor: "#c33a40 !important",
