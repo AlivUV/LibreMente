@@ -36,7 +36,7 @@ export default function ScheduleTable({
               <TableCell
                 key={`header${day}`}
                 sx={{
-                  backgroundColor: "#CC0000",
+                  backgroundColor: "#004b70",
                   color: "white",
                   borderLeft: 1,
                   fontWeight: FontWeightValues.Semibold,

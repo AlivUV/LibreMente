@@ -43,10 +43,10 @@ export const Call: FC<Props> = ({
         theme: {
           colors: {
             accent: "#e1e7e8",
-            accentText: "#CC0000",
-            background: "#CC0000",
+            accentText: "#004b70",
+            background: "#004b70",
             baseText: "#ffffff",
-            backgroundAccent: "#ff5151",
+            backgroundAccent: "#EA6F13",
             mainAreaBg: "#f3f3f3",
             mainAreaBgAccent: "#cecece",
             mainAreaText: "#6c6c6d",
