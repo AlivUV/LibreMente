@@ -115,7 +115,7 @@ export default function ScheduleDisplay() {
           <ListItem>
             <ThemeProvider theme={scheduleTheme}>
               <ListItemIcon>
-                <Circle color="primary" />
+                <Circle style={{ color: "#EA6F13", opacity: "42%" }} />
               </ListItemIcon>
             </ThemeProvider>
             <ListItemText primary="Disponible" />
@@ -123,7 +123,14 @@ export default function ScheduleDisplay() {
           <ListItem>
             <ThemeProvider theme={scheduleTheme}>
               <ListItemIcon>
-                <Circle color="secondary" />
+                <Circle
+                  style={{
+                    color: "#EEEEEE",
+                    boxSizing: "border-box",
+                    border: "1px solid #EECEEE",
+                    borderRadius: "25px",
+                  }}
+                />
               </ListItemIcon>
             </ThemeProvider>
             <ListItemText primary="No disponible" />

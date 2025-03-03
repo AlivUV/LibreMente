@@ -29,14 +29,16 @@ export default function Home() {
           style: {
             width: "2em",
             height: "2em",
-            // color: "white",
+            color: "#EA6F13",
+            opacity: "42%",
           },
         }}
-        // activeIndicatorIconButtonProps={{
-        //   style: {
-        //     color: "lightblue",
-        //   },
-        // }}
+        activeIndicatorIconButtonProps={{
+          style: {
+            color: "#E6B00B",
+            opacity: "100%",
+          },
+        }}
         indicatorContainerProps={{
           style: {
             // marginTop: "-20%",

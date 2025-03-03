@@ -43,7 +43,7 @@ export default function CellButton({
           schedule[day].hours[hour] = !selected;
           setSelected(!selected);
         }}
-        color={selected ? "primary" : "secondary"}
+        style={{ color: selected ? "rgba(234, 111, 19, 42%)" : "#EEEEEE" }}
       />
     </ThemeProvider>
   );
