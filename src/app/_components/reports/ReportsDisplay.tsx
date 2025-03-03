@@ -41,7 +41,7 @@ export default function ReportsDisplay() {
           />
         </SectionWrapper>
         {(session?.user.role === Roles.Administrador ||
-          session?.user.role === Roles.Coordinador) && (
+          session?.user.role === Roles.Monitor) && (
           <SectionWrapper title="Tutores adscritos">
             <Chart
               title="Edad"
@@ -58,17 +58,17 @@ export default function ReportsDisplay() {
           </SectionWrapper>
         )}
         {session?.user.role === Roles.Administrador && (
-          <SectionWrapper title="Coordinadores adscritos">
+          <SectionWrapper title="Monitores adscritos">
             <Chart
               title="Edad"
               fetcher={() =>
-                countUsersByRole(PsychologistFilters.Age, Roles.Coordinador)
+                countUsersByRole(PsychologistFilters.Age, Roles.Monitor)
               }
             />
             <Chart
               title="Género"
               fetcher={() =>
-                countUsersByRole(PsychologistFilters.Gender, Roles.Coordinador)
+                countUsersByRole(PsychologistFilters.Gender, Roles.Monitor)
               }
             />
           </SectionWrapper>

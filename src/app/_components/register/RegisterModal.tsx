@@ -49,11 +49,11 @@ export default function RegisterModal({
         .then((request) => {
           const possibleRoles = [
             Roles.Administrador,
-            Roles.Coordinador,
+            Roles.Monitor,
             Roles.Tutor,
           ];
           switch (request.requestedRole) {
-            case Roles.Coordinador:
+            case Roles.Monitor:
               possibleRoles.pop();
             case Roles.Tutor:
               possibleRoles.pop();
@@ -165,7 +165,7 @@ export default function RegisterModal({
                 puede descargar desde el SIRA
               </li>
               <li>Tutor: Tarjeta Profesional de Psicólogo</li>
-              <li>Coordinador: Tarjeta Profesional de Psicólogo</li>
+              <li>Monitor: Tarjeta Profesional de Psicólogo</li>
             </ul>
             {/* </DialogContentText> */}
           </DialogContent>

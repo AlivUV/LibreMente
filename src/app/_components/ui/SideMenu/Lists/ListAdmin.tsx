@@ -17,7 +17,7 @@ export default function ListAdmin() {
       <MenuItem label="Dar Aval" path="/solicitudes">
         <ThumbUpOutlined color="secondary" />
       </MenuItem>
-      {/* <MenuItem label="Coordinadores" path="">
+      {/* <MenuItem label="Monitores" path="">
         <SupervisorAccountOutlined color="secondary" />
       </MenuItem>
       <MenuItem label="Tutores" path="">

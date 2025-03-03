@@ -14,7 +14,7 @@ export async function getRequestsByUserRole(userRole: Roles) {
     case Roles.Tutor:
       filterQuery.requestedRole = Roles.Practicante;
       break;
-    case Roles.Coordinador:
+    case Roles.Monitor:
       filterQuery.$or = [
         { requestedRole: Roles.Practicante },
         { requestedRole: Roles.Tutor },

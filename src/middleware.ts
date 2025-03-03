@@ -24,7 +24,7 @@ const allowedPaths = {
     "/pruebas",
   ],
   Tutor: ["/practicantes", "/perfil", "/citas", "/reportes", "/solicitudes"],
-  Coordinador: [
+  Monitor: [
     "/tutores",
     "/perfil",
     "/citas",
@@ -65,8 +65,8 @@ export default withAuth(
           case Roles.Tutor:
             myAllowedPaths = allowedPaths.Tutor;
             break;
-          case Roles.Coordinador:
-            myAllowedPaths = allowedPaths.Coordinador;
+          case Roles.Monitor:
+            myAllowedPaths = allowedPaths.Monitor;
             break;
           case Roles.Administrador:
             myAllowedPaths = allowedPaths.Administrador;

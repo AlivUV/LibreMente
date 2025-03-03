@@ -10,7 +10,7 @@ const requestSchema = new Schema<IRequest>(
     requestedRole: {
       type: String,
       enum: {
-        values: [Roles.Practicante, Roles.Tutor, Roles.Coordinador],
+        values: [Roles.Practicante, Roles.Tutor, Roles.Monitor],
         message: "{VALUES} no es un role válido",
         default: Roles.Practicante,
       },
@@ -26,7 +26,7 @@ const requestSchema = new Schema<IRequest>(
     },
     comment: String,
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const Request: Model<IRequest> =
