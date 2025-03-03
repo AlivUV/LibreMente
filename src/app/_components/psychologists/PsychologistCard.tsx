@@ -37,7 +37,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
         buttons.push(<ScheduleButton psychologistSlug={psychologist.slug} />);
         break;
       case Roles.Tutor:
-      case Roles.Coordinador:
+      case Roles.Monitor:
       case Roles.Administrador:
         buttons.push(
           <UpcomingAppointmentsButton psychologistId={psychologist._id!} />,

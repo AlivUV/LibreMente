@@ -13,7 +13,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import ListPsychologist from "./Lists/ListPsychologist";
 import ListPatient from "./Lists/ListPatient";
 import ListAdmin from "./Lists/ListAdmin";
-import ListCoordinator from "./Lists/ListCoordinator";
+import ListMonitor from "./Lists/ListMonitor";
 import ListTutor from "./Lists/ListTutor";
 import Roles from "@/app/_enums/Roles";
 import { SessionTimeContext } from "@/app/_contexts/SessionTimeContext";
@@ -71,9 +71,9 @@ export const SideMenu = () => {
           <ListTutor />
         )}
 
-        {role === Roles.Coordinador && (
-          /* Coordinador */
-          <ListCoordinator />
+        {role === Roles.Monitor && (
+          /* Monitor */
+          <ListMonitor />
         )}
 
         {role === Roles.Administrador && (

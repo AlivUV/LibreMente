@@ -29,10 +29,10 @@ export default function RoleCardList({
         setSelected={setSelectedRole}
       />
       <RoleCard
-        role={Roles.Coordinador}
-        description="El rol del coordinador es muy similar al del tutor, pues éste también puede
+        role={Roles.Monitor}
+        description="El rol del monitor es muy similar al del tutor, pues éste también puede
                 aprobar solicitudes de practicantes o darlos de baja, a la vez que puede generar reportes.
-                La gran diferencia es que en lugar de tener practicantes a su cargo, un coordinador supervisa
+                La gran diferencia es que en lugar de tener practicantes a su cargo, un monitor supervisa
                 un número determinado de tutores, permitiéndole aprobar sus solicitudes de cambio de rol y 
                 darlos de baja también"
         selection={selectedRole}

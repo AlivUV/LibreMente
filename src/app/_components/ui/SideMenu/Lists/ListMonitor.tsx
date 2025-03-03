@@ -7,7 +7,7 @@ import {
   ThumbUpOutlined,
 } from "@mui/icons-material";
 
-export default function ListCoordinator() {
+export default function ListMonitor() {
   return (
     <List>
       <MenuItem label="Perfil" path="/perfil">

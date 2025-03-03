@@ -22,7 +22,7 @@ export default function BackgroundQuote() {
         LibreMente es una plataforma web de acompañamiento psicológico diseñada
         para apoyar a estudiantes en su trayectoria académica. Con un equipo de
         practicantes de Psicología supervisados por tutores experimentados y
-        coordinadores docentes, brinda un espacio seguro para abordar las
+        monitores docentes, brinda un espacio seguro para abordar las
         inquietudes emocionales de los jóvenes. Su misión es promover el
         bienestar integral, ofreciendo herramientas para superar desafíos tanto
         académicos como personales y contribuir con la creación de una comunidad

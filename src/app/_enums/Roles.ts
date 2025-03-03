@@ -2,7 +2,7 @@ enum Roles {
   Consultante = "Consultante",
   Practicante = "Practicante",
   Tutor = "Tutor",
-  Coordinador = "Coordinador",
+  Monitor = "Monitor",
   Administrador = "Administrador",
 }
 

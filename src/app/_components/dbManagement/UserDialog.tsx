@@ -113,7 +113,7 @@ export default function UserDialog({
 
           case Roles.Tutor:
             return (
-              user.role === Roles.Coordinador &&
+              user.role === Roles.Monitor &&
               (!responsibleUserCounts[user._id!] ||
                 responsibleUserCounts[user._id!] <= 5)
             );
@@ -131,7 +131,7 @@ export default function UserDialog({
         switch (dbUser.role) {
           case Roles.Tutor:
             return user.role === Roles.Practicante && !user.responsibleUser;
-          case Roles.Coordinador:
+          case Roles.Monitor:
             return user.role === Roles.Tutor && !user.responsibleUser;
           default:
             return false;
@@ -183,7 +183,7 @@ export default function UserDialog({
                 case "Usuarios asignados":
                   return (
                     (user.Rol === Roles.Tutor ||
-                      user.Rol === Roles.Coordinador) && (
+                      user.Rol === Roles.Monitor) && (
                       <>
                         {index > 0 && (
                           <Grid xs={12}>
