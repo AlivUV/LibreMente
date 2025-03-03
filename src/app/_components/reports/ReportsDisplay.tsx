@@ -17,7 +17,7 @@ export default function ReportsDisplay() {
   return (
     <>
       <div id="Reportes" ref={pdfRef}>
-        <PageHeader header="Reportes" />
+        <PageHeader color="primary.main" header="Reportes" />
         <YearlyPatientsSection />
         <AppointmentsByPsychologistSection />
         <SectionWrapper title="Practicantes adscritos">

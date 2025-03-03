@@ -42,7 +42,7 @@ export default function DownloadButton({
   return (
     <Button
       onClick={handleDownloadPDF}
-      color="secondary"
+      color="primary"
       size="large"
       endIcon={<Download />}
       sx={{ m: 2, fontWeight: FontWeightValues.Semibold }}
