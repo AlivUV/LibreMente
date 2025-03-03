@@ -2,14 +2,12 @@ import { Box, Typography } from "@mui/material";
 
 export default function QuoteContainer() {
   return (
-    <Box py="50px" px="20vw">
-      <Typography variant="h5" color="text2.main" textAlign="center">
-        “En terapia, he aprendido la importancia de mantener equilibradas la
-        vida espiritual y la vida profesional. Necesito recuperar mi
-        equilibrio”.
+    <Box py="5vw" px="20vw">
+      <Typography variant="h4" color="primary.main" textAlign="center">
+        “Mi cerebro es la clave que define mi mente libre”.
       </Typography>
-      <Typography variant="h5" color="primary.main" textAlign="center">
-        {"(Tiger Woods)."}
+      <Typography variant="h4" color="secondary.main" textAlign="right">
+        {"(Harry Houdini)."}
       </Typography>
     </Box>
   );

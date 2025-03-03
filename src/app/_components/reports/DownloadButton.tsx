@@ -36,7 +36,7 @@ export default function DownloadButton({
       });
       pdf.setFontSize(9);
       pdf.text("Generado el día " + date, pdfWidth - 90, 10);
-      pdf.save(`Reporte Estumente ${format(new Date(), "dd/MM/yyyy")}.pdf`);
+      pdf.save(`Reporte Libremente ${format(new Date(), "dd/MM/yyyy")}.pdf`);
     });
   };
   return (

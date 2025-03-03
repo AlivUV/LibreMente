@@ -11,8 +11,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | EstuMente",
-    default: "EstuMente",
+    template: "%s | Libremente",
+    default: "Libremente",
   },
 };
 
