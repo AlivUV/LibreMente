@@ -23,6 +23,7 @@ export default function BackgroundQuote() {
         left="calc(50% + 20px)"
         width="40%"
         color="secondary.contrastText"
+        textAlign={"justify"}
       >
         LibreMente es una plataforma web de acompañamiento psicológico diseñada
         para apoyar a estudiantes en su trayectoria académica. Con un equipo de
