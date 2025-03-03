@@ -46,7 +46,7 @@ export const Call: FC<Props> = ({
             accentText: "#004b70",
             background: "#004b70",
             baseText: "#ffffff",
-            backgroundAccent: "#EA6F13",
+            backgroundAccent: "#eeeeee",
             mainAreaBg: "#f3f3f3",
             mainAreaBgAccent: "#cecece",
             mainAreaText: "#6c6c6d",
