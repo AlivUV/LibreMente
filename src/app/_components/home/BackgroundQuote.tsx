@@ -19,7 +19,7 @@ export default function BackgroundQuote() {
         width="40%"
         color="secondary.contrastText"
       >
-        Estumente es una plataforma web de acompañamiento psicológico diseñada
+        LibreMente es una plataforma web de acompañamiento psicológico diseñada
         para apoyar a estudiantes en su trayectoria académica. Con un equipo de
         practicantes de Psicología supervisados por tutores experimentados y
         coordinadores docentes, brinda un espacio seguro para abordar las
@@ -30,7 +30,7 @@ export default function BackgroundQuote() {
       </Typography>
       {/* <Image
         src={logo}
-        alt="Logo EstuMente"
+        alt="Logo LibreMente"
         style={{
           zIndex: 1,
           position: "relative",

@@ -14,8 +14,6 @@ export const metadata: Metadata = {
   title: "Sesión",
 };
 
-const prueba = "https://estumente.daily.co/prueba";
-
 interface Props {
   params: { id: string };
 }

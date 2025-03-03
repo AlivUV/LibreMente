@@ -21,7 +21,7 @@ export const Hero = () => {
         variant="h5"
         sx={{ fontSize: { sm: 50 }, fontWeight: 500 }}
       >
-        EstuMente
+        LibreMente
       </Typography>
 
       <Typography
