@@ -1,28 +1,57 @@
-import background from "@/../public/images/backgroundQuote.jpg";
+import background from "@/../public/images/backgroundQuote/background.png";
+import logo from "@/../public/images/logo/logo-naranja.png";
+import bandera from "@/../public/images/backgroundQuote/bandera.png";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default function BackgroundQuote() {
   return (
-    <Box height="70vh">
+    <Box height="90vh" position={"relative"}>
       <Image
         src={background}
         alt="Fondo"
         style={{
           objectPosition: "50% 60%",
-          objectFit: "cover",
+          objectFit: "fill",
           height: "100%",
           width: "100%",
         }}
       />
+      <Image
+        src={logo}
+        alt="Logo"
+        style={{
+          position: "absolute",
+          objectFit: "contain",
+          height: "35%",
+          width: "35%",
+          zIndex: 1,
+          top: "42.5%",
+          right: "calc(50% + 30px)",
+        }}
+      />
+      <Image
+        src={bandera}
+        alt="Bandera"
+        style={{
+          position: "absolute",
+          objectFit: "contain",
+          height: "calc(50%)",
+          width: "50%",
+          zIndex: 1,
+          top: "35%",
+          right: "calc(25%)",
+        }}
+      />
       <Typography
-        position="relative"
+        position="absolute"
         zIndex={1}
-        bottom="60%"
+        top="45%"
         variant="body2"
-        left="calc(50% + 20px)"
+        left="calc(52.5%)"
         width="40%"
         color="secondary.contrastText"
+        lineHeight={"1.5rem"}
         textAlign={"justify"}
       >
         LibreMente es una plataforma web de acompañamiento psicológico diseñada
