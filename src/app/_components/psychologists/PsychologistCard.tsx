@@ -8,6 +8,7 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
+import Image from "next/image";
 import { IPsychologist } from "@/app/_interfaces/IPsychologist";
 import { useRouter } from "next/navigation";
 import GoogleImage from "../ui/GoogleImage";
@@ -64,7 +65,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
             alignItems: "center",
           }}
         >
-          <CardMedia
+          {/* <CardMedia
             component={GoogleImage}
             compSrc={psychologist.profilePicture}
             compAlt={Roles.Practicante}
@@ -72,6 +73,19 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
               width: 120,
               height: 120,
               marginTop: 3,
+              borderRadius: "50%",
+              borderColor: "#EA6F13",
+            }}
+          /> */}
+
+          <Image
+            src={psychologist.profilePicture}
+            alt={Roles.Practicante}
+            width={120}
+            height={120}
+            style={{
+              marginTop: 3,
+              border: "2px solid #EA6F13",
               borderRadius: "50%",
             }}
           />
