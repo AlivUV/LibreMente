@@ -76,7 +76,7 @@ export default function ScheduleTable({
                       paddingBottom: 0,
                       paddingLeft: 0,
                       paddingRight: 0,
-                      backgroundColor: color,
+                      backgroundColor: scheduleTheme.palette.secondary.main,
                       borderLeft: 1,
                       borderRight: index === days.length - 1 ? 1 : 0,
                       borderColor: "#e0e0e0",
