@@ -8,7 +8,6 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Skeleton,
 } from "@mui/material";
 import CellButton from "./CellButton";
 import { IDay } from "@/app/_interfaces/schedule/IDay";

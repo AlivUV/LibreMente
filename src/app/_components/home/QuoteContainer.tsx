@@ -13,8 +13,9 @@ export default function QuoteContainer() {
         variant="h4"
         color="secondary.main"
         textAlign="center"
+        left={"2rem"}
         paddingTop={"1rem"}
-        sx={{ transform: "translate(15rem)" }}
+        sx={{ transform: "translate(min(35%, 15rem))" }}
       >
         {"(Harry Houdini)."}
       </Typography>

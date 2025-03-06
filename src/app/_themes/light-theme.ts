@@ -101,7 +101,7 @@ let lightTheme = createTheme({
     MuiAvatar: {
       styleOverrides: {
         root: {
-          border: "3px solid transparent",
+          border: "2px solid transparent",
           backgroundColor: "#EA6F13",
         },
       },
