@@ -62,7 +62,8 @@ export default function ScheduleDisplay() {
           console.log("Me llegó algo");
           if (res?.days) setSchedule([...res.days]);
           setLoading(false);
-        });
+        })
+        .catch((err) => setLoading(false));
     }
   }, [session]);
   useEffect(() => {
@@ -84,7 +85,7 @@ export default function ScheduleDisplay() {
         close={() => setModalOpen(ModalStates.Closed)}
       />
       <PageHeader header="Configurar agenda" />
-      <Stack direction="row" overflow="hidden" marginBottom="30px">
+      <Stack direction="row" overflow="visible" marginBottom="30px">
         <List
           sx={{
             span: {

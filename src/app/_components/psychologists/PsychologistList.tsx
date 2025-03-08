@@ -40,10 +40,10 @@ export const PsychologistList = ({
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>Agenda</DialogTitle>
         {content?.type === ContentTypes.Comments && null}
-        {content?.type === ContentTypes.Schedule && content.content && (
+        {content?.type === ContentTypes.Schedule && content?.content && (
           <ScheduleTable schedule={content.content} readOnly />
         )}
-        {content?.type === ContentTypes.Schedule && !content.content && (
+        {content?.type === ContentTypes.Schedule && !content?.content && (
           <Typography sx={{ padding: "2rem" }}>
             El practicante no tiene agenda disponible en este momento.
           </Typography>
