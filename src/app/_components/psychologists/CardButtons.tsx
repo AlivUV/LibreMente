@@ -98,7 +98,7 @@ export function SeeScheduleButton({
         fetchScheduleByPsychologist(psychologistId)
           .then((schedule) =>
             setContent({
-              content: [...schedule.days],
+              content: schedule ? [...schedule.days] : undefined,
               type: ContentTypes.Schedule,
             })
           )
