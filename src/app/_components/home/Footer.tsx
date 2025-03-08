@@ -27,10 +27,14 @@ export default function Footer() {
         },
       }}
     >
-      <Grid container spacing={3} columns={17} px={0} py={4}>
-        <Grid item xs={17} sm={6} lg={3}>
-          {/* <Image src={logoFooter} alt="Logo de la universidad" /> */}
-        </Grid>
+      <Grid
+        container
+        spacing={3}
+        columns={17}
+        px={0}
+        py={4}
+        sx={{ padding: "auto", justifyContent: "center" }}
+      >
         <Grid item xs={17} sm={6} lg={3}>
           <LinksOfInterest />
         </Grid>
