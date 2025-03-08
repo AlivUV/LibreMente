@@ -70,6 +70,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
         <CardContent>
           <Box sx={{ display: "block" }} className="fadeIn">
             <Typography
+              height={"4rem"}
               fontWeight={FontWeightValues.Semibold}
               color="text1"
               align="center"
