@@ -6,6 +6,7 @@ import BackgroundQuote from "./_components/home/BackgroundQuote";
 import VideoContainer from "./_components/home/VideoContainer";
 import Footer from "./_components/home/Footer";
 
+
 export default function Home() {
   return (
     <Box sx={{ paddingTop: "6em" }}>
