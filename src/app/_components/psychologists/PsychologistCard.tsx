@@ -1,17 +1,8 @@
 "use client";
 import React, { FC } from "react";
-import {
-  Grid,
-  Card,
-  Box,
-  Typography,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
+import { Grid, Card, Box, Typography, CardContent } from "@mui/material";
 import Image from "next/image";
 import { IPsychologist } from "@/app/_interfaces/IPsychologist";
-import { useRouter } from "next/navigation";
-import GoogleImage from "../ui/GoogleImage";
 import Roles from "@/app/_enums/Roles";
 import { useSession } from "next-auth/react";
 import { ContentTypes } from "./PsychologistList";
@@ -29,7 +20,6 @@ interface Props {
 }
 
 export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
-  const router = useRouter();
   const { data: session } = useSession();
   const buttons = (() => {
     const buttons: React.JSX.Element[] = [];
@@ -65,19 +55,6 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
             alignItems: "center",
           }}
         >
-          {/* <CardMedia
-            component={GoogleImage}
-            compSrc={psychologist.profilePicture}
-            compAlt={Roles.Practicante}
-            compStyle={{
-              width: 120,
-              height: 120,
-              marginTop: 3,
-              borderRadius: "50%",
-              borderColor: "#EA6F13",
-            }}
-          /> */}
-
           <Image
             src={psychologist.profilePicture}
             alt={Roles.Practicante}
@@ -93,6 +70,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
         <CardContent>
           <Box sx={{ display: "block" }} className="fadeIn">
             <Typography
+              height={"4rem"}
               fontWeight={FontWeightValues.Semibold}
               color="text1"
               align="center"
