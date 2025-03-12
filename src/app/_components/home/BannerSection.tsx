@@ -53,7 +53,7 @@ export default function BannerSection() {
     >
       {banners.map((banner, index) => (
         <Box className="recursiveBox" display="flex" key={`banner${index}`}>
-          <Link href={"/practicantes"}>
+          <Link href={"/practicantes"} style={{ width: "100%" }}>
             <Image
               src={banner}
               alt="primer banner"
