@@ -7,6 +7,7 @@ import {
   IconButton,
   Link,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import { UiContext } from "@/app/_contexts/ui/UiContext";
 import { useContext, useEffect } from "react";
@@ -100,6 +101,14 @@ const Navbar = () => {
             </Link>
           </Box>
           <Box sx={{ display: "flex", minHeight: "inherit" }}>
+            {session && (
+              <Typography
+                color={"white"}
+                sx={{ alignContent: "center", paddingRight: "2rem" }}
+              >
+                Hola, {session.user.role} {session.user.firstName}
+              </Typography>
+            )}
             <Divider
               orientation="vertical"
               sx={{

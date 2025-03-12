@@ -40,6 +40,7 @@ const allowedPaths = {
     "/solicitudes",
     "/practicantes",
   ],
+  All: ["/", "practicantes"],
 };
 
 export default withAuth(
@@ -78,7 +79,7 @@ export default withAuth(
         }
       }
     } else {
-      if (pathname !== "/")
+      if (!allowedPaths.All.some((path) => pathname.startsWith(path)))
         return NextResponse.redirect(new URL("/", req.nextUrl));
     }
   },

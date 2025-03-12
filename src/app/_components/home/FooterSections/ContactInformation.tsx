@@ -23,19 +23,18 @@ export default function ContactInformation() {
         Colombia.
       </Typography>
       <hr style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }} />
-      <Link href="enlace">
+      <Link href="mailto:atencionalusuario@unad.edu.co">
         <Typography color={"#E6B00B !important"}>
           Atención al usuario
         </Typography>
       </Link>
-      <Link href="enlace">
+      <Link href="https://sgeneral.unad.edu.co/notificaciones">
         <Typography color={"#E6B00B !important"}>
-          {" "}
           Buzón de notificaciones judiciales
         </Typography>
       </Link>
       <hr style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }} />
-      <Link href="enlace">
+      <Link href="https://informacion.unad.edu.co/index.php/plan-anticorrupcion">
         <Typography color={"#E6B00B !important"}>
           Ir al Plan anticorrupción
         </Typography>

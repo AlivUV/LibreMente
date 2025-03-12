@@ -11,6 +11,7 @@ import {
 import Roles from "../_enums/Roles";
 import { getMyServerSession } from "../_utils/next-auth";
 import PageHeader from "../_components/PageHeader";
+import { SignInButton } from "../_components/psychologists/SignInButton";
 
 export const metadata: Metadata = {
   title: "Practicantes",
@@ -23,8 +24,9 @@ const SearchPage: NextPage = async () => {
       ? await getPsychologistsByTutor(session.user._id!, true)
       : await getPsychologists(true);
   return (
-    <PsiLayout title="PsicologicaMente" pageDescription="Sanando Juntos">
+    <PsiLayout title="LibreMente" pageDescription="Sanando Juntos">
       <Box sx={{ margin: "80px auto", padding: "0px 30px" }}>
+        {!session && <SignInButton />}
         <PageHeader header="Elige un practicante" />
         <Suspense fallback="Cargando...">
           <PsychologistList psychologists={psychologists} />
