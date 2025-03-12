@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 const getImages = (baseName: String) => {
   let i: number = 1;
@@ -52,11 +53,13 @@ export default function BannerSection() {
     >
       {banners.map((banner, index) => (
         <Box className="recursiveBox" display="flex" key={`banner${index}`}>
-          <Image
-            src={banner}
-            alt="primer banner"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <Link href={"/practicantes"}>
+            <Image
+              src={banner}
+              alt="primer banner"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </Link>
         </Box>
       ))}
     </Carousel>
