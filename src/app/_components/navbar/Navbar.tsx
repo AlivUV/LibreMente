@@ -12,7 +12,7 @@ import {
 import { UiContext } from "@/app/_contexts/ui/UiContext";
 import { useContext, useEffect } from "react";
 import NextLink from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Menu } from "@mui/icons-material";
 import NotificationsButton from "./notifications/NotificationsButton";
@@ -22,7 +22,7 @@ import { SessionTimeContext } from "@/app/_contexts/SessionTimeContext";
 import { registerSessionTime } from "@/app/_utils/session-time";
 import BreadcrumbsSection from "./BreadcrumbsSection";
 import Image from "next/image";
-import logo from "@/../public/images/logo/logo-blanco.png";
+import logo from "@/../public/images/logo/logo-blanco.webp";
 
 const Navbar = () => {
   console.log("Se renderiza Navbar");
@@ -166,9 +166,9 @@ const Navbar = () => {
                 }}
               >
                 <Button
+                  href="/ingresar"
                   variant="text"
                   className="hero-btn"
-                  onClick={() => signIn("google")}
                   color="contrast"
                   sx={{
                     borderRadius: "0px",

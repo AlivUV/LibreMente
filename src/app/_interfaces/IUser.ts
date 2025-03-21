@@ -1,4 +1,3 @@
-import { Types } from "mongoose";
 import Roles from "../_enums/Roles";
 import { UserStates } from "../_enums/UserStates";
 

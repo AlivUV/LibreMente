@@ -1,10 +1,4 @@
-import { Box, Divider, Grid, Stack, Typography } from "@mui/material";
-// import logoFooter from "@/../public/images/logo-color.png";
-// import Image from "next/image";
-import { FontWeightValues } from "@/app/_enums/FontWeightValues";
-import XIcon from "@mui/icons-material/X";
-import { Facebook, Instagram, LinkedIn, YouTube } from "@mui/icons-material";
-import { TikTokIcon } from "@/app/_icons";
+import { Box, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import CreditsDialog from "./CreditsDialog";
 import LinksOfInterest from "./FooterSections/LinksOfInterest";

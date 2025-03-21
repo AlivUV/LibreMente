@@ -1,6 +1,6 @@
-import background from "@/../public/images/backgroundQuote/background.png";
-import logo from "@/../public/images/logo/logo-naranja.png";
-import bandera from "@/../public/images/backgroundQuote/bandera.png";
+import background from "@/../public/images/backgroundQuote/background.webp";
+import logo from "@/../public/images/logo/logo-naranja.webp";
+import bandera from "@/../public/images/backgroundQuote/bandera.webp";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 

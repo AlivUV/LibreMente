@@ -8,7 +8,9 @@ const getImages = (baseName: String) => {
   let images = [];
   try {
     let image;
-    while ((image = require(`@/../public/images/banner/${baseName}${i++}.jpg`)))
+    while (
+      (image = require(`@/../public/images/banner/${baseName}${i++}.webp`))
+    )
       images.push(image);
   } finally {
     return images;
