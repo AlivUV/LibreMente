@@ -64,9 +64,10 @@ export default withAuth(
             myAllowedPaths = allowedPaths.Administrador;
             break;
         }
-        myAllowedPaths.push("/");
-        if (!myAllowedPaths.some((path) => pathname.startsWith(path))) {
-          return NextResponse.redirect(new URL(myAllowedPaths[0], req.nextUrl));
+        if (pathname !== "/") {
+          if (!myAllowedPaths.some((path) => pathname.startsWith(path))) {
+            return NextResponse.redirect(new URL("/", req.nextUrl));
+          }
         }
       }
     } else {
