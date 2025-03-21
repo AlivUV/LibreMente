@@ -16,7 +16,9 @@ import { IPsychologist } from "@/app/_interfaces/IPsychologist";
 import IUser from "@/app/_interfaces/IUser";
 import { NextAuthOptions } from "next-auth";
 import Google from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import slugify from "slugify";
+import { comparePass } from "@/app/_encryption/userPass";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
@@ -27,12 +29,48 @@ const authOptions: NextAuthOptions = {
       clientId: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@email.edu.co",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "**********",
+        },
+      },
+      async authorize(credentials, req) {
+        if (!credentials?.email) throw Error("Las credenciales están vacías.");
+        const user: IUser = await getUserByEmail(credentials.email);
+        if (!user) throw Error("El usuario no existe.");
+        if (!user.password)
+          throw new Error("El usuario está logueado con Google.");
+        if (user.state !== UserStates.Activo)
+          throw new Error("El usuario está inactivo.");
+        {
+          const matchPass = await comparePass(
+            credentials.password,
+            user.password
+          );
+
+          if (!matchPass) throw new Error("Contraseña incorrecta.");
+        }
+        return {
+          id: user._id!,
+          name: user.firstName!,
+          email: user.email!,
+        };
+      },
+    }),
   ],
   callbacks: {
-    async signIn({ account, profile }) {
-      if (!profile?.email) {
-        throw new Error("No profile");
-      }
+    async signIn({ credentials, account, profile }) {
+      if (credentials) return true;
+      if (!profile?.email) throw new Error("No profile");
       const newUser: Partial<IUser> = {
         firstName: profile.given_name,
         lastName: profile.family_name,
@@ -40,28 +78,28 @@ const authOptions: NextAuthOptions = {
         email: profile.email,
         profilePicture: profile.picture,
       };
-      const user = await getUserByEmail(profile.email);
-      if (user) {
+      const receivedUser = await getUserByEmail(profile.email);
+      if (receivedUser) {
         await updateUserByEmail(profile.email, {
           profilePicture: profile.picture,
         });
-        if (user.role === Roles.Practicante) {
-          const upsertPsychologist: IPsychologist = {
-            fullName: user.fullName,
-            gender: user.gender || "Indefinido",
-            profilePicture: user.profilePicture!,
-            user: user._id!,
+        if (receivedUser.role === Roles.Practicante) {
+          const userPsychologist: IPsychologist = {
+            fullName: receivedUser.fullName,
+            gender: receivedUser.gender || "Indefinido",
+            profilePicture: receivedUser.profilePicture!,
+            user: receivedUser._id!,
             slug: slugify(profile.name!),
             isPublic: true,
             state: UserStates.Activo,
           };
-          const psychologist = await getPsychologistByUser(user._id!);
+          const psychologist = await getPsychologistByUser(receivedUser._id!);
           if (psychologist) {
             console.log("Este psicólogo sí existe");
-            await updatePsychologistByUser(user._id!, upsertPsychologist);
+            await updatePsychologistByUser(receivedUser._id!, userPsychologist);
           } else {
             console.log("Este psicólogo no existe");
-            await createPsychologist(upsertPsychologist);
+            await createPsychologist(userPsychologist);
           }
         }
       } else {

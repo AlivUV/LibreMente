@@ -10,7 +10,7 @@ import {
 import IUser from "@/app/_interfaces/IUser";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import RegisterModal from "../register/RegisterModal";
+import RoleChangeModal from "../role/RoleChangeModal";
 import FieldForm from "./FieldForm";
 import ProfileFieldContext from "@/app/_contexts/ProfileFieldContext";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
@@ -102,7 +102,7 @@ export const PersonalInfo: FC<Props> = ({
           </Stack>
         </Grid>
         <FieldForm setUpdating={setUpdating} />
-        <RegisterModal
+        <RoleChangeModal
           open={modalOpen}
           handleClose={() => setModalOpen(false)}
         />

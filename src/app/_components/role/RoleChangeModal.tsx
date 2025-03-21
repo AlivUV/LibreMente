@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import ProfileFieldContext from "@/app/_contexts/ProfileFieldContext";
 
-export default function RegisterModal({
+export default function RoleChangeModal({
   open,
   handleClose,
 }: {

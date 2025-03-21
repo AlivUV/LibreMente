@@ -1,14 +1,13 @@
 "use client";
 
 import { Button, Typography } from "@mui/material";
-import { signIn } from "next-auth/react";
 
 export const SignInButton = () => {
   return (
     <Button
       variant="text"
       className="hero-btn"
-      onClick={() => signIn("google")}
+      href="/ingresar"
       color="contrast"
       sx={{
         minWidth: "100px",

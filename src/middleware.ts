@@ -1,17 +1,8 @@
-// import { NextRequest } from "next/server";
 import { Session } from "next-auth";
 import { withAuth } from "next-auth/middleware";
 import Roles from "./app/_enums/Roles";
-import path from "path";
 import { NextResponse } from "next/server";
 import { UserStates } from "./app/_enums/UserStates";
-// import { getMyServerSession } from "./app/_utils/next-auth";
-
-// export async function middleware(request: NextRequest) {
-//   //   const session = await getMyServerSession();
-//   console.log("Hola, soy el middleware, esta es la sesión:");
-//   //   console.log(session);
-// }
 
 const allowedPaths = {
   Consultante: ["/citas", "/perfil", "/practicantes"],
@@ -40,7 +31,7 @@ const allowedPaths = {
     "/solicitudes",
     "/practicantes",
   ],
-  All: ["/", "practicantes"],
+  All: ["/ingresar", "/registro", "/practicantes"],
 };
 
 export default withAuth(
@@ -79,8 +70,9 @@ export default withAuth(
         }
       }
     } else {
-      if (!allowedPaths.All.some((path) => pathname.startsWith(path)))
-        return NextResponse.redirect(new URL("/", req.nextUrl));
+      if (pathname !== "/")
+        if (!allowedPaths.All.some((path) => pathname.startsWith(path)))
+          return NextResponse.redirect(new URL("/", req.nextUrl));
     }
   },
   {
