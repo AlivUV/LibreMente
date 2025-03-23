@@ -89,6 +89,7 @@ export default function NotificationsButton() {
         <NotificationsList
           notifications={notifications}
           handleClear={handleClear}
+          handleClose={handleClose}
         />
       </Popover>
     </>

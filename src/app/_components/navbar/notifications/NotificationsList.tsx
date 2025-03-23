@@ -11,14 +11,18 @@ import {
 } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
 import es from "javascript-time-ago/locale/es";
+import { useRouter } from "next/navigation";
 
 export default function NotificationsList({
   notifications,
   handleClear,
+  handleClose,
 }: {
   notifications: INotification[];
   handleClear: (id: string, index: number, simpleClear: boolean) => void;
+  handleClose: () => void;
 }) {
+  const router = useRouter();
   const currentTime = Date.now();
   TimeAgo.addDefaultLocale(es);
   const timeAgo = new TimeAgo("es");
@@ -26,6 +30,11 @@ export default function NotificationsList({
     <List>
       {notifications.map((notification, index) => (
         <ListItem
+          onClick={() => {
+            router.push("/solicitudes");
+            handleClose();
+            handleClear(notification._id!, index, notification.simpleClear);
+          }}
           key={`Notificacion ${notification._id}`}
           sx={{ color: "#666666" }}
         >

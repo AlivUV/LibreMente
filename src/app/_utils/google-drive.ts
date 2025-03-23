@@ -44,6 +44,52 @@ export async function uploadFile(data: Buffer, name: string) {
   }
 }
 
+async function setPermissions(id: string) {
+  const auth = await authorize();
+  const service = google.drive({ version: "v3", auth });
+
+  const permissions = {
+    role: "reader",
+    type: "anyone",
+  };
+
+  const response = await service.permissions.create({
+    fileId: id,
+    requestBody: {
+      role: "reader",
+      type: "anyone",
+    },
+  });
+}
+
+export async function uploadPhoto(data: Buffer, name: string) {
+  const auth = await authorize();
+  const service = google.drive({ version: "v3", auth });
+  const requestBody = {
+    name: name,
+    mimeType: "image/webp",
+  };
+  const media = {
+    mimeType: "image/webp",
+    body: new stream.PassThrough().end(data),
+  };
+  try {
+    const file = await service.files
+      .create({
+        requestBody,
+        media: media,
+      })
+      .catch((reason) => console.log(reason));
+    if (file) {
+      setPermissions(file.data.id!);
+      return file.data.id;
+    }
+    return "";
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getFile(fileId: string) {
   const auth = await authorize();
   const service = google.drive({ version: "v3", auth });

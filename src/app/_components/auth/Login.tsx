@@ -36,7 +36,6 @@ export default function LoginForm() {
       password: userData.password,
       redirect: false,
     }).then((res) => {
-      console.log(res);
       if (!res) setError("Error al intentar iniciar sesión.");
       else if (res.error) setError(res.error);
       else router.push("/");
@@ -91,7 +90,6 @@ export default function LoginForm() {
           <Button
             href="/"
             color="primary"
-            disabled={sending}
             startIcon={<CancelOutlined />}
             sx={{
               fontWeight: FontWeightValues.Regular,
