@@ -1,5 +1,5 @@
 export const emailValidation = (email: string) => {
-  const regExp = /^[a-z._]+@unad.edu.co$/;
+  const regExp = /^[a-z._0-9]+@unad.edu.co$/;
   return regExp.test(email);
 };
 
@@ -29,6 +29,7 @@ export const validateRegisterData = (
     };
   }
   if (!emailValidation(email)) {
+    console.log(email);
     validationStatus.status = 400;
     validationStatus.error = {
       ...validationStatus.error,

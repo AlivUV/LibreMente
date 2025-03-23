@@ -2,12 +2,12 @@
 
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import PasswordField from "./PasswordField";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import GoogleButton from "./GoogleButton";
 import { CancelOutlined, SendOutlined } from "@mui/icons-material";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import { useRouter } from "next/navigation";
-import { registerUser } from "@/app/_utils/server actions/user";
+import { getImageLink, registerUser } from "@/app/_utils/server actions/user";
 import Link from "next/link";
 import DropZone from "./DropZone";
 
@@ -35,11 +35,22 @@ export default function SignInForm() {
 
   const handleSubmit = useCallback(() => {
     setSending(true);
-    registerUser(userData).then((data) => {
-      console.log(data);
-      setSending(false);
-    });
-  }, [userData]);
+
+    const formData = new FormData();
+    formData.set("file", file as unknown as File);
+    getImageLink(formData)
+      .then((imageLink) => {
+        registerUser({
+          ...userData,
+          profilePicture: imageLink || undefined,
+        }).then((_) => {
+          router.push("/ingresar");
+        });
+      })
+      .finally(() => {
+        setSending(false);
+      });
+  }, [userData, file, router]);
 
   return (
     <Card
@@ -122,7 +133,6 @@ export default function SignInForm() {
           <Button
             href="/"
             color="primary"
-            disabled={sending}
             startIcon={<CancelOutlined />}
             sx={{
               fontWeight: FontWeightValues.Regular,
