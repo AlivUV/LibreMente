@@ -77,6 +77,50 @@ export async function registerUser({
   return newUser;
 }
 
+export async function registerUser({
+  firstName,
+  lastName,
+  email,
+  password,
+  confirmPassword,
+}: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}) {
+  {
+    const validationStatus = validateRegisterData(
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword
+    );
+
+    if (validationStatus.status === 400) {
+      return validationStatus;
+    }
+  }
+
+  password = await hashPass(password);
+
+  const userData: IUser = {
+    firstName: firstName,
+    lastName: lastName,
+    fullName: `${firstName} ${lastName}`,
+    email: email,
+    password: password,
+    role: Roles.Consultante,
+    state: UserStates.Activo,
+    totalTimeSpent: 0,
+  };
+
+  const newUser = await createUser(userData);
+  return newUser;
+}
+
 export async function fetchUserById(id: string) {
   const user = await getUserById(id);
   return user;

@@ -29,7 +29,6 @@ export const validateRegisterData = (
     };
   }
   if (!emailValidation(email)) {
-    console.log(email);
     validationStatus.status = 400;
     validationStatus.error = {
       ...validationStatus.error,

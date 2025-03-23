@@ -2,7 +2,7 @@
 
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import PasswordField from "./PasswordField";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import GoogleButton from "./GoogleButton";
 import { CancelOutlined, SendOutlined } from "@mui/icons-material";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
@@ -35,7 +35,6 @@ export default function SignInForm() {
 
   const handleSubmit = useCallback(() => {
     setSending(true);
-
     const formData = new FormData();
     formData.set("file", file as unknown as File);
     getImageLink(formData)
