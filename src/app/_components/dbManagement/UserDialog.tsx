@@ -32,6 +32,7 @@ export default function UserDialog({
 }) {
   const dbUser = index === undefined ? index : users[index];
   const [editingAssignedUsers, setEditingAssignedUsers] = useState(false);
+  const [editingRole, setEditingRole] = useState(false);
   const [editingResponsibleUser, setEditingResponsibleUser] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
   const responsibleUserCounts: Record<string, number> = {};
@@ -60,6 +61,7 @@ export default function UserDialog({
     index: baseResponsibleUser?.index,
   };
   let newResponsibleUser: typeof responsibleUser;
+  let newRole: Roles;
 
   function editAssignedUsers() {
     if (editingAssignedUsers) {
@@ -84,6 +86,22 @@ export default function UserDialog({
     } else {
       setEditingAssignedUsers(true);
     }
+  }
+  function editRole() {
+    if (!editingRole || !dbUser) {
+      return setEditingRole(true);
+    }
+    if (!newRole) return setEditingRole(false);
+    if (newRole === dbUser.role) {
+      return setEditingRole(false);
+    }
+
+    saveUserById(dbUser._id!, { role: newRole })
+      .then(() => {
+        dbUser.role = newRole;
+        users[index!].role = newRole;
+      })
+      .finally(() => setEditingRole(false));
   }
   function editResponsibleUser() {
     if (editingResponsibleUser && dbUser) {
@@ -187,7 +205,10 @@ export default function UserDialog({
                           </Grid>
                         )}
                         <Grid item key={`${key}:key`} xs={4}>
-                          <Typography fontWeight={FontWeightValues.Semibold}>
+                          <Typography
+                            fontWeight={FontWeightValues.Semibold}
+                            color={"primary.main"}
+                          >
                             {key + ":"}
                           </Typography>
                         </Grid>
@@ -235,16 +256,19 @@ export default function UserDialog({
                           </Grid>
                         )}
                         <Grid item xs={4}>
-                          <Typography fontWeight={FontWeightValues.Semibold}>
+                          <Typography
+                            fontWeight={FontWeightValues.Semibold}
+                            color={"primary.main"}
+                          >
                             {key + ":"}
                           </Typography>
                         </Grid>
                         <Grid item xs={6}>
                           <Autocomplete
+                            disabled={!editingResponsibleUser}
                             size="small"
                             fullWidth
                             defaultValue={responsibleUser}
-                            readOnly={!editingResponsibleUser}
                             options={responsibleUserOptions}
                             onChange={(e, newValue) =>
                               (newResponsibleUser = newValue ?? undefined)
@@ -281,7 +305,10 @@ export default function UserDialog({
                           </Grid>
                         )}
                         <Grid item xs={4}>
-                          <Typography fontWeight={FontWeightValues.Semibold}>
+                          <Typography
+                            fontWeight={FontWeightValues.Semibold}
+                            color={"primary.main"}
+                          >
                             {key + ":"}
                           </Typography>
                         </Grid>
@@ -299,6 +326,63 @@ export default function UserDialog({
                       </>
                     )
                   );
+                case "Rol":
+                  return (
+                    value && (
+                      <>
+                        {index > 0 && (
+                          <Grid item xs={12}>
+                            <Divider />
+                          </Grid>
+                        )}
+                        <Grid item xs={4}>
+                          <Typography
+                            fontWeight={FontWeightValues.Semibold}
+                            color={"primary.main"}
+                          >
+                            {key + ":"}
+                          </Typography>
+                        </Grid>
+                        {editingRole ? (
+                          <Grid item xs={6}>
+                            <Autocomplete
+                              size="small"
+                              fullWidth
+                              defaultValue={value + ""}
+                              options={[
+                                Roles.Consultante,
+                                Roles.Practicante,
+                                Roles.Tutor,
+                                Roles.Monitor,
+                              ]}
+                              onChange={(_, newValue) =>
+                                (newRole =
+                                  (newValue as Roles) ?? (value as Roles))
+                              }
+                              renderInput={(params) => (
+                                <TextField {...params} label={key} />
+                              )}
+                            />
+                          </Grid>
+                        ) : (
+                          <Grid item xs={6}>
+                            {value.toString()}
+                          </Grid>
+                        )}
+                        <Grid xs={2} alignContent={"center"}>
+                          <IconButton color="secondary" onClick={editRole}>
+                            {editingRole ? <Check /> : <Edit />}
+                          </IconButton>
+                          <IconButton
+                            disabled={!editingRole}
+                            onClick={() => setEditingRole(false)}
+                          >
+                            <Cancel />
+                          </IconButton>
+                        </Grid>
+                      </>
+                    )
+                  );
                 default:
                   return (
                     value && (
@@ -309,7 +393,10 @@ export default function UserDialog({
                           </Grid>
                         )}
                         <Grid item xs={4}>
-                          <Typography fontWeight={FontWeightValues.Semibold}>
+                          <Typography
+                            fontWeight={FontWeightValues.Semibold}
+                            color={"primary.main"}
+                          >
                             {key + ":"}
                           </Typography>
                         </Grid>
