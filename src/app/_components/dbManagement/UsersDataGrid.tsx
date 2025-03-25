@@ -43,6 +43,7 @@ export default function UsersDataGrid({ users }: { users: IUser[] }) {
         sx={{
           "& .MuiDataGrid-columnHeader *": {
             fontWeight: FontWeightValues.Semibold,
+            color: "primary.main",
           },
           color: "#666666",
         }}

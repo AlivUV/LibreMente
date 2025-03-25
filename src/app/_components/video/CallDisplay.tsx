@@ -33,13 +33,13 @@ export default function CallDisplay({
       update({ appointmentPatientId: appointment.patient });
     }
   }, [session, appointment, update]);
-  if (leaving && session?.user.role !== Roles.Consultante)
-    router.push(
-      `/citas${
-        session?.user.role === Roles.Tutor &&
-        `?psychologist=${appointment.psychologist}`
-      }`
-    );
+  if (leaving && session?.user.role !== Roles.Consultante) "";
+  // router.push(
+  //   `/citas${
+  //     session?.user.role === Roles.Tutor &&
+  //     `?psychologist=${appointment.psychologist}`
+  //   }`
+  // );
   if (
     !leaving &&
     !isWithinInterval(new Date(), {
@@ -79,7 +79,7 @@ export default function CallDisplay({
               fontSize: { xs: 22, md: 32 },
               fontWeight: FontWeightValues.Semibold,
             }}
-            color="text1"
+            color="primary.main"
           >
             La cita ha finalizado
           </Typography>

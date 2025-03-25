@@ -8,6 +8,7 @@ import {
   Link,
   DialogContent,
   Grid,
+  Typography,
 } from "@mui/material";
 import { useSession } from "next-auth/react";
 import { useContext, useState } from "react";
@@ -79,7 +80,14 @@ export default function RoleChangeModal({
   }
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle fontWeight="bold">Cambio de Rol</DialogTitle>
+      <DialogTitle
+        color={"black"}
+        fontSize={"2rem !important"}
+        height={"3rem"}
+        fontWeight="bold"
+      >
+        Cambio de rol
+      </DialogTitle>
       <Stack>
         <RoleCardList
           selectedRole={selectedRole}
@@ -101,7 +109,7 @@ export default function RoleChangeModal({
               size="large"
               sx={{ fontWeight: FontWeightValues.Regular }}
             >
-              Subir documento soporte
+              <Typography color={"black"}>Subir documento soporte</Typography>
               <form id="pruebaForm">
                 <input
                   name="document"
@@ -143,7 +151,7 @@ export default function RoleChangeModal({
             <Link
               component="button"
               variant="body2"
-              color="secondary"
+              color="primary"
               underline="always"
               sx={{ width: "100%" }}
               onClick={() => setHelpOpen(true)}

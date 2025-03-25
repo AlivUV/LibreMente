@@ -41,7 +41,7 @@ const HistoryAppointmentPage: NextPage<Props> = async ({ searchParams }) => {
       title="Historial de citas"
       pageDescription="Historial de citas"
     >
-      <Box sx={{ margin: "80px auto", padding: "0px 30px" }}>
+      <Box sx={{ margin: "auto", padding: "0px 30px" }}>
         <PageHeader header="Historial de citas" />
         {/*Mejorar la validacion porque si hay citas pero no son del tipo para el historial*/}
         {appointments.length === 0 ? (

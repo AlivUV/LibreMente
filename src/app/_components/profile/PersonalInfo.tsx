@@ -43,6 +43,7 @@ export const PersonalInfo: FC<Props> = ({
             <Typography
               variant="h6"
               component="h6"
+              color={"primary.main"}
               fontWeight={FontWeightValues.Bold}
               sx={{ fontSize: { xs: 16, md: 20 } }}
             >

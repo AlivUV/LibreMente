@@ -74,7 +74,7 @@ export default function ListNotesPanel({
                     sx={{
                       ".MuiListItemText-primary": {
                         fontWeight: FontWeightValues.Semibold,
-                        color: "#666666",
+                        color: "#004b70",
                       },
                     }}
                     primary={note.title}

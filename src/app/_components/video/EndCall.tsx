@@ -43,7 +43,7 @@ export const EndCall: FC<Props> = ({ joinTrigger, leaveTrigger }) => {
             color="secondary"
             className="card-btn"
             onClick={() => {
-              if (session?.user.role === Roles.Consultante) {
+              if (session?.user.role === Roles.Practicante) {
                 router.push("/citas");
               }
               leaveTrigger();

@@ -64,7 +64,7 @@ export default async function AppointmentPage({
                   <Typography
                     variant="h6"
                     fontWeight={FontWeightValues.Semibold}
-                    color="text2.main"
+                    color="primary.main"
                   >
                     Resumen
                   </Typography>

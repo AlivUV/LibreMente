@@ -117,16 +117,21 @@ export default function AppointmentDatePicker({
             ".MuiPickersToolbar-root span": {
               fontWeight: FontWeightValues.Bold,
               fontSize: "1.5em",
-              color: "#333333",
+              color: "primary.main",
+            },
+            ".MuiDatePickerToolbar-title": {
+              color: "secondary.main",
             },
             ".MuiPickersCalendarHeader-root": {
-              color: "#004b70",
+              color: "secondary.main",
             },
             ".Mui-selected": {
-              backgroundColor: "#c33a40 !important",
+              color: "white !important",
+              backgroundColor: "#EA6F13 !important",
             },
-            ".MuiPickersDay-root": {
-              color: "#333333",
+            ".MuiPickersDay-root:enabled": {
+              backgroundColor: "rgba(0,75,112,0.1)",
+              color: "primary.main",
             },
           }}
           onChange={(newValue) =>

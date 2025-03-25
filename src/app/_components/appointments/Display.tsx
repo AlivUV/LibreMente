@@ -49,7 +49,7 @@ export default async function PsychologistDisplay({
             />
           </Box>
           <Typography
-            variant="h4"
+            variant="h6"
             align="center"
             color="white"
             fontWeight={FontWeightValues.Semibold}

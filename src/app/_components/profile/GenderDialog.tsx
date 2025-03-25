@@ -28,7 +28,7 @@ export default function GenderDialog({
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle
-        sx={{ fontWeight: FontWeightValues.Semibold, color: "#666666" }}
+        sx={{ fontWeight: FontWeightValues.Semibold, color: "primary.main" }}
       >
         Género personalizado
       </DialogTitle>

@@ -33,7 +33,7 @@ export default function ScheduleTable({
               <TableCell
                 key={`header${day}`}
                 sx={{
-                  backgroundColor: "#004b70",
+                  backgroundColor: "#EA6F13",
                   color: "white",
                   borderLeft: 1,
                   fontWeight: FontWeightValues.Semibold,
@@ -74,6 +74,7 @@ export default function ScheduleTable({
                       paddingBottom: 0,
                       paddingLeft: 0,
                       paddingRight: 0,
+                      opacity: "42%",
                       backgroundColor: color,
                       borderLeft: 1,
                       borderRight: index === days.length - 1 ? 1 : 0,
