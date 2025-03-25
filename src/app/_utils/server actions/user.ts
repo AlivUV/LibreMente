@@ -43,7 +43,9 @@ export async function registerUser(formData: FormData) {
     password: string;
     confirmPassword: string;
   } = {
-    profilePicture: await getImageLink(formData),
+    profilePicture: !(formData.get("profilePicture") as File).text
+      ? ""
+      : "profilePicture",
     firstName: formData.get("firstName") as string,
     lastName: formData.get("lastName") as string,
     email: formData.get("email") as string,
@@ -67,6 +69,7 @@ export async function registerUser(formData: FormData) {
   }
 
   password = await hashPass(password);
+  profilePicture = await getImageLink(formData);
 
   const userData: IUser = {
     firstName: firstName,

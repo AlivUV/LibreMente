@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { registerUser } from "@/app/_utils/server actions/user";
 import Link from "next/link";
 import DropZone from "./DropZone";
+import { passwordValidation } from "@/app/_validations/user";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -28,9 +29,29 @@ export default function SignInForm() {
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
+    password: [],
     confirmPassword: "",
   });
+
+  const handlePasswordChange = useCallback(
+    (evt: ChangeEvent<HTMLInputElement>) => {
+      setErrors((actualData: any) => {
+        const passwordErrors = passwordValidation(evt.target.value);
+        if (passwordErrors) {
+          return { ...actualData, password: passwordErrors };
+        } else {
+          return actualData;
+        }
+      });
+      setUserData((actualData) => {
+        return {
+          ...actualData,
+          [evt.target.id]: evt.target.value,
+        };
+      });
+    },
+    []
+  );
 
   const handleChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     setUserData((actualData) => {
@@ -54,7 +75,7 @@ export default function SignInForm() {
 
         setErrors((state) => {
           Object.entries(errors!).forEach(([key, value]) => {
-            state[key as keyof typeof state] = value;
+            state[key as keyof typeof state] = value as any;
           });
           return state;
         });
@@ -146,11 +167,14 @@ export default function SignInForm() {
             id="password"
             width="32rem"
             label="Escriba aquí su contraseña"
-            onChange={handleChange}
+            onChange={handlePasswordChange}
           />
-          {errors.password && (
-            <Typography color={"red"}>{errors.password}</Typography>
-          )}
+          {errors.password &&
+            errors.password.map((error) => (
+              <Typography key={`passError${error}`} color={"red"}>
+                {error}
+              </Typography>
+            ))}
         </Grid>
         <Grid item xs={12}>
           <PasswordField
