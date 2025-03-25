@@ -1,6 +1,4 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import NextLink from "next/link";
-import { forwardRef } from "react";
 import { LinkBehaviour } from "../_components/LinkBehavior";
 import { blue } from "@mui/material/colors";
 

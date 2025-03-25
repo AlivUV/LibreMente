@@ -3,7 +3,7 @@ import { FontWeightValues } from "../_enums/FontWeightValues";
 
 export default function PageHeader({
   header,
-  color = "text1.main",
+  color = "primary.main",
 }: {
   header: string;
   color?: string;

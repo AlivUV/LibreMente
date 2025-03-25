@@ -72,7 +72,7 @@ export const PsychologistCard: FC<Props> = ({ psychologist, setContent }) => {
             <Typography
               height={"4rem"}
               fontWeight={FontWeightValues.Semibold}
-              color="text1"
+              color="primary.main"
               align="center"
               variant="h5"
               gutterBottom

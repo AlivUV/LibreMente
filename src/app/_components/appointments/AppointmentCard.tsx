@@ -32,6 +32,7 @@ import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
 import Roles from "@/app/_enums/Roles";
 import { useSession } from "next-auth/react";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
+import Image from "next/image";
 
 interface Props {
   appointment: IUpcomingAppointment | IPreviousAppointment;
@@ -68,14 +69,14 @@ export const AppointmentCard: FC<Props> = ({
             alignItems: "center",
           }}
         >
-          <CardMedia
-            component={GoogleImage}
-            compAlt={fullName}
-            compSrc={image}
-            compStyle={{
-              width: 120,
-              height: 120,
+          <Image
+            alt={fullName}
+            src={image}
+            width={120}
+            height={120}
+            style={{
               margin: 1,
+              border: "2px solid #EA6F13",
               borderRadius: "50%",
             }}
           />
@@ -89,7 +90,7 @@ export const AppointmentCard: FC<Props> = ({
         >
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography
-              color="text2.main"
+              color="primary.main"
               component="div"
               variant="h6"
               fontWeight={FontWeightValues.Semibold}
