@@ -9,6 +9,25 @@ const nameValidation = (name: string) => {
   return /^[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,64}$/.test(name);
 };
 
+export const passwordValidation = (password: string) => {
+  let errors: string[] = [];
+
+  if (password.length < 8) {
+    errors.push("La contraseña debe tener al menos 8 caracteres");
+  }
+  if (!/[a-z\u00f1]/.test(password)) {
+    errors.push("La contraseña debe incluir una letra minúscula");
+  }
+  if (!/[A-Z\u00d1]/.test(password)) {
+    errors.push("La contraseña debe incluir una letra mayúscula");
+  }
+  if (!/\d/.test(password)) {
+    errors.push("La contraseña debe incluir un número");
+  }
+
+  return errors;
+};
+
 export const validateRegisterData = (
   profileImage: string,
   firstName: string,
@@ -20,7 +39,7 @@ export const validateRegisterData = (
   status: number;
   errors?: { password?: string; confirmPassword?: string; email?: string };
 } => {
-  const validationStatus = { status: 0, errors: {} };
+  const validationStatus = { status: 200, errors: {} };
   if (!profileImage) {
     validationStatus.status = 400;
     validationStatus.errors = {
@@ -42,14 +61,17 @@ export const validateRegisterData = (
       lastName: "El apellido no puede estar vacío y solo debe incluir letras",
     };
   }
-  if (!password) {
-    validationStatus.status = 400;
-    validationStatus.errors = {
-      ...validationStatus.errors,
-      password: "Se requiere una contraseña",
-    };
+  {
+    const passwordErrors = passwordValidation(password);
+    if (passwordErrors) {
+      validationStatus.status = 400;
+      validationStatus.errors = {
+        ...validationStatus.errors,
+        password: passwordErrors,
+      };
+    }
   }
-  if (!(password === confirmPassword)) {
+  if (password !== confirmPassword) {
     validationStatus.status = 400;
     validationStatus.errors = {
       ...validationStatus.errors,
