@@ -23,7 +23,5 @@ export async function deleteRoom(roomName: string) {
     method: "DELETE",
     headers: dailyHeaders,
   });
-  console.log("Petición enviada a daily.co. Esta fue su respuesta: ");
-  console.log(response);
   return response.ok;
 }

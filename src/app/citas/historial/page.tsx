@@ -22,7 +22,7 @@ interface Props {
 
 const HistoryAppointmentPage: NextPage<Props> = async ({ searchParams }) => {
   const session = await getMyServerSession();
-  const appointments = await (async () => {
+  const appointments = await(async () => {
     switch (session?.user.role!) {
       case Roles.Practicante:
         return getPreviousAppointmentsByPsychologist(
@@ -36,7 +36,6 @@ const HistoryAppointmentPage: NextPage<Props> = async ({ searchParams }) => {
           : [];
     }
   })();
-  console.log(`El tipo de las fechas es:${typeof appointments[0]}`);
   return (
     <PatientLayout
       title="Historial de citas"

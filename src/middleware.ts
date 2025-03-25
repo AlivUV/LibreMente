@@ -45,7 +45,6 @@ export default withAuth(
       ) {
         return NextResponse.redirect(new URL("/desactivado", req.nextUrl));
       } else {
-        console.log("Pathname es:", pathname);
         let myAllowedPaths: string[];
         switch (session.user.role) {
           case Roles.Consultante:

@@ -31,8 +31,6 @@ export async function getRequestsByUser(user: string) {
   noStore();
   await connect();
   const requests = await Request.find({ user }).lean();
-  console.log("Peticiones encontradas");
-  console.log(requests);
   return serialize(requests) as IRequest[];
 }
 

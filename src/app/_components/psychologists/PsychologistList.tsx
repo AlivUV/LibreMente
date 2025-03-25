@@ -15,7 +15,6 @@ export const PsychologistList = ({
 }: {
   psychologists: IPsychologist[];
 }) => {
-  console.log("Hola, soy la lista");
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState<{
     type: ContentTypes;

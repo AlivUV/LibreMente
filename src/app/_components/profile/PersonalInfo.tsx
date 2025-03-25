@@ -32,9 +32,6 @@ export const PersonalInfo: FC<Props> = ({
   const [updating, setUpdating] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  console.log("El género de este usuario es: " + session?.user.gender);
-  console.log("El número del usuario es: " + session?.user.phone);
-
   return (
     // <form /* onSubmit={handleSubmit(onUpdateUser)} */ noValidate>
     <ProfileFieldContext.Provider

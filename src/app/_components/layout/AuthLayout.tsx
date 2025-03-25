@@ -17,7 +17,6 @@ export const AuthLayout: FC<Props> = ({ children, title }) => {
         <title>{title}</title>
       </Head>
       {/* <UiContext.Provider value = {{isMenuOpen: isMenuOpen, toggleSideMenu: () => {
-        console.log("cambio estado")
         toggleSideMenu(!isMenuOpen)}}}> */}
       {/* <Navbar/> */}
       {/* <SideMenu /> */}

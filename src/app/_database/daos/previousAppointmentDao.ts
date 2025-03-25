@@ -74,7 +74,6 @@ export async function updatePreviousAppointment(
     { _id: new mongoose.Types.ObjectId(appointment._id) },
     appointment
   );
-  console.log("Se actualizaron", result.modifiedCount, "citas");
   return Boolean(result.modifiedCount);
 }
 

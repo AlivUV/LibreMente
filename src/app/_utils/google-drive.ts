@@ -35,7 +35,6 @@ export async function uploadFile(data: Buffer, name: string) {
       })
       .catch((reason) => console.log(reason));
     if (file) {
-      console.log("File Id:", file.data.id);
       return file.data.id;
     }
     return "";
@@ -98,8 +97,6 @@ export async function getFile(fileId: string) {
       fileId: fileId,
       alt: "media",
     });
-    console.log("results");
-    console.log(file.data);
     const blob: Blob = file.data as unknown as Blob;
     return new Blob([await blob.arrayBuffer()], { type: blob.type });
   } catch (err) {
@@ -109,20 +106,16 @@ export async function getFile(fileId: string) {
 }
 
 export async function deleteFile(fileId: string) {
-  console.log("Borrando archivo:", fileId);
   const auth = await authorize();
   const service = google.drive({ version: "v3", auth });
   const result = await service.files.delete({ fileId }).catch((reason) => {
-    console.log("falló");
     console.log(reason);
   });
-  console.log(result);
 }
 
 export async function getAllFiles() {
   const auth = await authorize();
   const service = google.drive({ version: "v3", auth });
   const results = (await service.files.list()).data.files;
-  console.log(results);
   return results!.map((file) => file.id as string);
 }

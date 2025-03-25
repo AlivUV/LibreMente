@@ -31,27 +31,18 @@ export default function NotificationsButton() {
   const open = Boolean(anchorEl);
   useEffect(() => {
     if (session) {
-      console.log("Se llama el useEffect");
       pusherClient.subscribe(session?.user._id!);
       pusherClient.subscribe(session?.user.role!);
       pusherClient.bind("event", (notification: INotification) => {
-        console.log("Ocurrió un cambio en el WebSocket, me llegó esto");
-        console.log(notification);
         if (isNotification(notification))
           setNotifications((prev) => [...prev, notification]);
       });
       fetchNotificationsByUser(session?.user._id!, session?.user.role).then(
         (notifications) => {
-          console.log(
-            "Tengo",
-            notifications.length,
-            "notifiaciones del servidor"
-          );
           setNotifications(notifications);
         }
       );
       return () => {
-        console.log("Me desuscribo");
         pusherClient.unbind();
         pusherClient.unsubscribe(session?.user._id!);
         pusherClient.unsubscribe(session?.user.role!);

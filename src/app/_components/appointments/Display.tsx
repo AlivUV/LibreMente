@@ -18,8 +18,6 @@ export default async function PsychologistDisplay({
     psychologist._id!
   );
   const schedule = await getScheduleById(psychologist._id!);
-  console.log("psychologist es:");
-  console.log(psychologist);
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

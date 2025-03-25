@@ -44,8 +44,6 @@ export async function getPsychologistByUser(user: string) {
   noStore();
   await connect();
   const psychologist = await Psychologist.findOne({ user: user }).lean();
-  console.log("Psicólogo:");
-  console.log(psychologist);
   return serialize(psychologist) as IPsychologist;
 }
 

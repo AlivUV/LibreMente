@@ -22,7 +22,6 @@ export default function RequestTable({ requests }: { requests: IRequest[] }) {
   const [user, setUser] = useState<IUser | null>(null);
   const [documentSrc, setDocumentSrc] = useState("");
   const [loading, setLoading] = useState(true);
-  console.log("Se llama la tabla");
   return (
     <>
       <RequestModal
@@ -82,12 +81,10 @@ export default function RequestTable({ requests }: { requests: IRequest[] }) {
                           requests[index].supportingDocumentId
                       )
                         .then((response) => {
-                          console.log(response);
                           return response.blob();
                         })
                         .then((blob) => {
                           const url = URL.createObjectURL(blob);
-                          console.log("La url es:", url);
                           setDocumentSrc(url);
                         })
                         .catch((error) => console.log(error)),

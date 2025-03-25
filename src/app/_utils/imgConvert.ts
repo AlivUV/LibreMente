@@ -9,7 +9,6 @@ const imgToWebp = (file: any, setFileState: any) => {
       const webpImg = new File([blob], file.name, { type: blob.type });
       file = webpImg;
       file.url = URL.createObjectURL(webpImg);
-      console.log(file);
       setFileState((actual: any) => file);
     }, "image/webp");
   };

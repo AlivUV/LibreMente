@@ -32,13 +32,9 @@ export default function FieldForm({
     };
     for (let key in updatedUser) {
       if (!updatedUser[key as keyof typeof updatedUser]) {
-        console.log("entro");
         delete updatedUser[key as keyof typeof updatedUser];
       }
     }
-    console.log(`La fecha es ${formData.get("Fecha de Nacimiento")}`);
-    console.log("usuario actualizado:");
-    console.log(updatedUser);
     toast
       .promise(update(updatedUser), {
         pending: "Guardando datos...",

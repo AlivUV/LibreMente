@@ -35,12 +35,19 @@ export default function LoginForm() {
       email: userData.email,
       password: userData.password,
       redirect: false,
-    }).then((res) => {
-      if (!res) setError("Error al intentar iniciar sesión.");
-      else if (res.error) setError(res.error);
-      else router.push("/");
-      setSending(false);
-    });
+    })
+      .then((res) => {
+        if (!res) setError("Error al intentar iniciar sesión.");
+        else if (res.error) setError(res.error);
+        else router.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        setError("Error al intentar iniciar sesión.");
+      })
+      .finally(() => {
+        setSending(false);
+      });
   }, [userData, router]);
 
   return (
@@ -80,6 +87,18 @@ export default function LoginForm() {
             onChange={handleChange}
           />
         </Grid>
+        {error && (
+          <Grid item xs={12}>
+            <Typography
+              color={"red"}
+              justifySelf={"center"}
+              marginTop={"-1rem"}
+              marginBottom={"1rem"}
+            >
+              {error}
+            </Typography>
+          </Grid>
+        )}
         <Grid item xs={12}>
           <Typography>
             Aún no tienes una cuenta?{" "}

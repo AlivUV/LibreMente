@@ -95,10 +95,8 @@ const authOptions: NextAuthOptions = {
           };
           const psychologist = await getPsychologistByUser(receivedUser._id!);
           if (psychologist) {
-            console.log("Este psicólogo sí existe");
             await updatePsychologistByUser(receivedUser._id!, userPsychologist);
           } else {
-            console.log("Este psicólogo no existe");
             await createPsychologist(userPsychologist);
           }
         }
@@ -110,7 +108,6 @@ const authOptions: NextAuthOptions = {
       return true;
     },
     async jwt({ token, user, profile, trigger, session }) {
-      console.log("JWT");
       if (trigger === "update") {
         if (session) {
           if (session.appointmentPatientId) {

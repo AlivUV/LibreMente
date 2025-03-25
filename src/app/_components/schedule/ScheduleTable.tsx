@@ -23,8 +23,6 @@ export default function ScheduleTable({
   schedule: IDay[];
   readOnly?: boolean;
 }) {
-  console.log("Schedule es");
-  console.log(schedule);
   return (
     <TableContainer sx={{ height: "100%" }}>
       <Table size="small" stickyHeader aria-label="sticky table">
