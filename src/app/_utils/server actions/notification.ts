@@ -14,7 +14,7 @@ export async function sendNotification(
   body: string,
   simpleClear: boolean,
   image?: string,
-  condition?: INotification["condition"],
+  condition?: INotification["condition"]
 ) {
   const notification: INotification = {
     image,
@@ -24,19 +24,16 @@ export async function sendNotification(
     condition,
   };
   const dbNotification = await createNotification(notification);
-  console.log("Hago el trigger");
   pusherServer.trigger(receiver.id, "event", dbNotification);
   return Boolean(dbNotification);
 }
 
 export async function fetchNotificationsByUser(user: string, role: Roles) {
-  console.log("Fetcheando las notificaciones de un usuario con rol: ", role);
   const notifications = await getNotificationsByUser(user, role);
   const results = await Promise.all(notifications.map(notificationChecker));
   const checkedNotifications = notifications.filter(
-    (_v, index) => results[index],
+    (_v, index) => results[index]
   );
-  console.log("Resultados filtro", checkedNotifications.length);
   return checkedNotifications;
 }
 

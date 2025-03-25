@@ -37,7 +37,6 @@ export default function RoleChangeModal({
   const { setPendingRequest } = useContext(ProfileFieldContext);
   const user = session?.user;
   function handleSubmit() {
-    console.log("Corre el submit");
     if (user) {
       setSending(true);
       toast

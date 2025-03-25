@@ -20,7 +20,6 @@ export default function Notas() {
     undefined
   );
   useEffect(() => {
-    console.log("corre useEffect");
     if (noteId && !selectedNote) {
       fetchNoteById(noteId).then((note) => setSelectedNote(note));
     }

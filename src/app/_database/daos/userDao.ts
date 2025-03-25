@@ -25,7 +25,6 @@ export async function getUsers(activeOnly = false) {
 export async function getUserById(id: string) {
   noStore();
   await connect();
-  console.log(id);
   const user: IUser[] = await User.aggregate(addAgePipeline).match({
     _id: new mongoose.Types.ObjectId(id),
   });
@@ -36,7 +35,6 @@ export async function getUserByEmail(email: string) {
   noStore();
   await connect();
   const user: IUser[] = await User.aggregate(addAgePipeline).match({ email });
-  console.log(user[0]);
   return user[0];
 }
 
@@ -63,7 +61,6 @@ export async function updateUserById(
 ) {
   noStore();
   await connect();
-  console.log(user);
   const result = await User.updateOne({ _id: id }, user);
   return Boolean(result.modifiedCount);
 }
@@ -101,10 +98,8 @@ export async function getPatientsByPsychologist(
   activeOnly = false
 ) {
   noStore();
-  console.log("el psicólogo es:", psychologist);
   const users: IUser[] = await User.aggregate(
     getPatientsByPsychologistPipeline(psychologist, activeOnly)
   );
-  console.log(`Resultado: ${users}`);
   return users;
 }

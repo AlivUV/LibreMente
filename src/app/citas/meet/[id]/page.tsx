@@ -25,11 +25,7 @@ const MeetPage: NextPage<Props> = async ({ params }) => {
     pastAppointment = await getPreviousAppointmentById(params.id);
     if (!pastAppointment) redirect("/citas");
   }
-  console.log("El appointment que recibo es:");
-  console.log(appointment);
   const session = await getServerSession(authOptions);
-  console.log("Y esta es la session");
-  console.log(session?.user);
   function canJoin() {
     switch (session?.user.role) {
       case Roles.Consultante:

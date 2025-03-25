@@ -14,9 +14,8 @@ import { INote } from "@/app/_interfaces/INote";
 
 export async function fetchNotesByPatient(
   psychologist: string,
-  patient: string,
+  patient: string
 ) {
-  console.log("fetch notes, con " + psychologist + " y " + patient);
   const notes = await getNotesByPatient(psychologist, patient);
   return notes;
 }
@@ -43,9 +42,8 @@ export async function filterNotes(
   psychologist: string,
   filter: string | Date,
   filterBy: NoteFilters,
-  patient?: string,
+  patient?: string
 ) {
-  console.log("Filter es: " + filter);
   let patientName;
   let title;
   let date;
@@ -71,8 +69,7 @@ export async function filterNotes(
     patient,
     patientName,
     title,
-    date,
+    date
   );
-  console.log("voy a mandar:" + notes);
   return notes;
 }

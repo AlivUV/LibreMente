@@ -25,23 +25,18 @@ import Image from "next/image";
 import logo from "@/../public/images/logo/logo-blanco.webp";
 
 const Navbar = () => {
-  console.log("Se renderiza Navbar");
   const pathname = usePathname();
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
   const { sessionTime, setSessionTime } = useContext(SessionTimeContext);
   const { data: session, status, update } = useSession();
-  console.log("Session es:", session);
   useEffect(() => {
     if (session) {
-      console.log("useEffect por primera vez, sessionTime es:", sessionTime);
-
       if (sessionTime) {
         const handleEvent = (ev: Event) => {
           if (document.visibilityState === "hidden") {
             registerSessionTime(sessionTime, session.user._id!);
           } else {
             setSessionTime(new Date());
-            console.log("Me cumplo");
             update();
           }
         };
@@ -56,7 +51,6 @@ const Navbar = () => {
   useEffect(() => {
     if (session) {
       setSessionTime(new Date());
-      console.log("2do useEffect");
     }
   }, [session, setSessionTime]);
   function middleButton() {

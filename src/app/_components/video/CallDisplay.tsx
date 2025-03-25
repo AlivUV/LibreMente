@@ -29,7 +29,6 @@ export default function CallDisplay({
     compareAsc(new Date(), addHours(new Date(appointment.date), 1)) === 1
   );
   useEffect(() => {
-    console.log("use Effect malvado");
     if (session?.appointmentPatientId !== appointment.patient) {
       update({ appointmentPatientId: appointment.patient });
     }
@@ -48,7 +47,6 @@ export default function CallDisplay({
       end: addHours(new Date(appointment.date), 1),
     })
   ) {
-    console.log("La condición se cumple");
     setLeaving(true);
   }
 

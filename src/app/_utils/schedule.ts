@@ -59,8 +59,6 @@ export function isAppointmentTime(appointmentDate: Date) {
   const date1 = new Date(appointmentDate);
   const date2 = new Date();
   date2.setMinutes(0, 0, 0);
-  console.log(`la fecha 1 es ${date1} y la 2 ${date2}.}
-    `);
   return isEqual(date1, date2);
 }
 

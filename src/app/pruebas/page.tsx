@@ -8,7 +8,6 @@ import { useState } from "react";
 interface Props {}
 export default function Pruebas(props: Props) {
   const [open, setOpen] = useState(false);
-  console.log("Open es: " + open);
   return (
     <PsychologistLayout title="Pruebas" pageDescription="Pruebas">
       <h1>Pruebas</h1>

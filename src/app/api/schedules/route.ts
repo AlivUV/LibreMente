@@ -21,7 +21,6 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  console.log("Llamando al post");
   const { psychologist, schedule }: { psychologist: string; schedule: IDay[] } =
     await req.json();
   await updateScheduleByPsychologist(psychologist, schedule);

@@ -5,7 +5,6 @@ import Providers from "@/app/_providers/Providers";
 import Navbar from "@/app/_components/navbar/Navbar";
 import styles from "@/app/_styles/layout.module.css";
 import Box from "@mui/material/Box/Box";
-import { getMyServerSession } from "./_utils/next-auth";
 import { ToastContainer } from "react-toastify";
 import { Metadata } from "next";
 
@@ -21,12 +20,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const session = await getMyServerSession();
-  // if (session) {
-  //   const sessionStart = new Date();
-  //   console.log("La sesión inicia:", sessionStart);
-  // }
-
   return (
     <html lang="en">
       <head>

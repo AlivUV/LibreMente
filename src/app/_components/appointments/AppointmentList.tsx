@@ -22,9 +22,7 @@ export const AppointmentList: FC<Props> = async ({ appointments, history }) => {
         const psychologist = await getPsychologistById(
           appointment.psychologist
         );
-        console.log(`Psicólogo: ${psychologist}`);
         const user = await getUserById(appointment.patient);
-        console.log(`Paciente: ${user}`);
         const { fullName, image, role } = (() => {
           let fullName = "",
             image = "",

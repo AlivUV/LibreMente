@@ -109,7 +109,6 @@ export async function saveUserStateById(
 ) {
   let result = false;
   result = await updateUserById(id, { state });
-  console.log("Psychologist es:" + psychologist);
   if (psychologist) {
     result = await updatePsychologistByUser(id, { state });
   }

@@ -44,14 +44,11 @@ function reducer(state: IState, action: IAction): IState {
   switch (action.type) {
     case "date":
       (action.body as Date).setHours(0);
-      console.log("La fecha es: " + action.body);
       const availableHours = getAvailableHours(
         action.body as Date,
         state.appointments!,
         action.schedule!
       );
-      console.log("Las horas son:");
-      console.log(availableHours);
       return {
         ...state,
         date: action.body as Date,
@@ -180,7 +177,6 @@ export default function AppointmentDatePicker({
             sx={{ flexGrow: 1 }}
             onClick={async () => {
               const user = session?.user!;
-              console.log(`Mandando la fecha: ${state.date}`);
               toast
                 .promise(
                   scheduleAppointment(

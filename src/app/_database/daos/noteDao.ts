@@ -4,8 +4,6 @@ import { connect, serialize } from "../connection";
 import { FilterQuery, Types } from "mongoose";
 import { unstable_noStore as noStore } from "next/cache";
 
-console.log("Entro al DAO de Notas");
-
 export async function getNotesByPatient(psychologist: string, patient: string) {
   noStore();
   await connect();
@@ -39,7 +37,6 @@ export async function getFilteredNotes(
     dayEnd.setDate(dayEnd.getDate() + 1);
     dateExp = { $gte: dayStart, $lt: dayEnd };
   }
-  console.log("El título es", title);
   const prueba: FilterQuery<INote> = {
     psychologist,
     patient,
@@ -55,8 +52,6 @@ export async function getFilteredNotes(
     }
   }
   const sortBy = patientName ? "patientName" : date ? "date" : "title";
-  console.log("el query es:");
-  console.log(prueba);
   const notes = await Note.find(prueba).sort(sortBy);
   return serialize(notes) as INote[];
 }
@@ -73,8 +68,6 @@ export async function getNotesByTitle(
     patient: patient,
     title: { $regex: new RegExp(title, "i") },
   }).lean();
-  console.log(`filtrando por ${title} encontré...`);
-  console.log(notes);
   return serialize(notes) as INote[];
 }
 
@@ -88,7 +81,6 @@ export async function getNotesByDate(
   const dayStart = new Date(date);
   const dayEnd = new Date(date);
   dayEnd.setDate(dayEnd.getDate() + 1);
-  console.log(`comparando entre ${dayStart} y ${dayEnd}`);
   const notes = await Note.find({
     psychologist: psychologist,
     patient: patient,

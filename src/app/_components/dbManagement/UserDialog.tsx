@@ -30,7 +30,6 @@ export default function UserDialog({
   open: boolean;
   handleClose: () => void;
 }) {
-  console.log("Se recarga el dialog");
   const dbUser = index === undefined ? index : users[index];
   const [editingAssignedUsers, setEditingAssignedUsers] = useState(false);
   const [editingResponsibleUser, setEditingResponsibleUser] = useState(false);
@@ -80,7 +79,6 @@ export default function UserDialog({
           )
         )
         .then(() => {
-          console.log(users);
           setEditingAssignedUsers(false);
         });
     } else {
@@ -95,7 +93,6 @@ export default function UserDialog({
         dbUser._id!,
         newId ? { responsibleUser: newId } : { $unset: { responsibleUser: 1 } }
       ).then(() => setEditingResponsibleUser(false));
-      console.log(users);
     } else {
       setEditingResponsibleUser(true);
     }
@@ -161,7 +158,6 @@ export default function UserDialog({
       "Usuarios asignados": assignedUsers,
       "Usuario responsable": responsibleUser,
     };
-    console.log(user);
     return (
       <Dialog open={open} onClose={handleClose} sx={{ overflow: "auto" }}>
         {index !== undefined && (

@@ -31,7 +31,6 @@ export const Call: FC<Props> = ({
   const createAndJoinCall = useCallback(async () => {
     const oldCall = DailyIframe.getCallInstance();
     if (!oldCall) {
-      console.log("Creando nuevo objeto call");
       const newCallFrame = DailyIframe.createFrame(callRef?.current, {
         iframeStyle: {
           height: "calc(100vh - 7px - 64px)",
@@ -56,7 +55,6 @@ export const Call: FC<Props> = ({
         showLeaveButton: true,
         showFullscreenButton: false,
       });
-      console.log("callFrame Creado, es: " + newCallFrame);
       setCallFrame(newCallFrame);
 
       try {
@@ -86,7 +84,6 @@ export const Call: FC<Props> = ({
    * Initiate Daily iframe creation on component render if it doesn't already exist
    */
   useEffect(() => {
-    console.log("callFrame en Call es: " + callFrame);
     if (status === "authenticated" && !callFrame && room) {
       createAndJoinCall();
     }

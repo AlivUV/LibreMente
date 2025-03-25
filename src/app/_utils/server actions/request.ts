@@ -50,11 +50,9 @@ export async function sendRequest(
     );
   }
   await Promise.all(promiseList);
-  console.log("Peticiones anteriores eliminadas");
   const document = formData.get("document") as File;
   const bytes = await document.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  console.log("El documento recibido es: " + document.name);
   const supportingDocumentId = await uploadFile(buffer, document.name);
   const request: IRequest = {
     firstName: user.firstName,

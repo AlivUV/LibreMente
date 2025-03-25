@@ -22,7 +22,6 @@ async function test() {
         },
       },
     ]);
-  console.log("Hay", documentsUsers, "grupos");
   const promises = documentsUsers.map((document) =>
     Request.aggregate<IRequest>([
       {
@@ -39,7 +38,6 @@ async function test() {
         $limit: document.count,
       },
     ]).then((requests) => {
-      console.log(requests);
       documentsToDelete.push(
         ...requests.map((request) => ({
           _id: new mongoose.Types.ObjectId(request._id?.toString()!),
@@ -49,8 +47,6 @@ async function test() {
     })
   );
   Promise.all(promises).then(() => {
-    console.log("to Delete:");
-    console.log(documentsToDelete);
     return Promise.all(
       documentsToDelete.map((document) =>
         deleteFile(document.fileId).then(() =>

@@ -21,7 +21,7 @@ const AppointmentPage = async ({
   searchParams: { psychologist?: string };
 }) => {
   const session = await getMyServerSession();
-  const appointments = await (async () => {
+  const appointments = await(async () => {
     switch (session?.user.role!) {
       case Roles.Practicante:
         return getUpcomingAppointmentsByPsychologist(
@@ -35,7 +35,6 @@ const AppointmentPage = async ({
           : [];
     }
   })();
-  console.log(`El tipo de las fechas es:${typeof appointments[0]}`);
   return (
     <PatientLayout title="Mis citas" pageDescription="Mis citas">
       <Box>

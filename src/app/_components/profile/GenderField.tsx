@@ -12,14 +12,11 @@ export default function GenderField({
   readOnly?: boolean;
   defaultValue?: string;
 }) {
-  console.log("El género inical es:", defaultValue);
   const addOption = "Añadir género personalizado...";
   const [open, setOpen] = useState(false);
   const [customGender, setCustomGender] = useState("");
-  console.log("Custom gender es:", customGender);
   const options = [...defaultOptions, customGender, addOption];
   const [selection, setSelection] = useState(options[2]);
-  console.log("selection es:", selection);
   useEffect(() => {
     if (defaultValue) {
       if (!defaultOptions.includes(defaultValue)) {
@@ -34,7 +31,6 @@ export default function GenderField({
     if (event.target.value === addOption) {
       setOpen(true);
     } else {
-      console.log("reacciono");
       setSelection(event.target.value);
     }
   }

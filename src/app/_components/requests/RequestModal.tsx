@@ -66,7 +66,6 @@ export default function RequestModal({
         error: "Ha ocurrido un error, por favor inténtalo nuevamente",
       })
       .then(() => {
-        console.log("Solicitud respondida con éxito");
         requestList.splice(index, 1);
         handleClose();
       });

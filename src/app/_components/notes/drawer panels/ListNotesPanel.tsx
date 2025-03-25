@@ -34,7 +34,6 @@ export default function ListNotesPanel({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("shouldUpdate es: " + shouldUpdate);
     if (shouldUpdate && session) {
       setLoading(true);
       const updatePromise = filterNotes(

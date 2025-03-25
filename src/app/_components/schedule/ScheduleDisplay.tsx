@@ -42,13 +42,9 @@ export default function ScheduleDisplay() {
     );
   }
 
-  console.log("Carga la página");
   const { data: session } = useSession();
   const [loading, setLoading] = useState(true);
   const fetchSchedule = useCallback(() => {
-    console.log(
-      "voy a mandar: " + process.env.NEXT_PUBLIC_BASE_URL + SCHEDULES
-    );
     if (session) {
       setLoading(true);
       fetch(
@@ -59,7 +55,6 @@ export default function ScheduleDisplay() {
         .then((res) => res.json())
         .then((res) => {
           res;
-          console.log("Me llegó algo");
           if (res?.days) setSchedule([...res.days]);
           setLoading(false);
         })

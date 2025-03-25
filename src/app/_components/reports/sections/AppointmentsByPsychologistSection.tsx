@@ -8,7 +8,6 @@ import PatientFilters from "@/app/_enums/reports/PatientFilters";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 
 export default function AppointmentsByPsychologistSection() {
-  console.log("Carga consultas");
   const allPsychologistsOption = { id: "", label: "Todos los practicantes" };
   const [optionsList, setOptionsList] = useState<
     { id: string; label: string }[]

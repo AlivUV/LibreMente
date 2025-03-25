@@ -4,8 +4,6 @@ import Schedule from "../models/Schedule";
 import { ISchedule } from "@/app/_interfaces/schedule/ISchedule";
 import { unstable_noStore as noStore } from "next/cache";
 
-console.log("Entro al DAO de horarios");
-
 export async function getScheduleByPsychologist(psychologist: string) {
   noStore();
   await connect();
