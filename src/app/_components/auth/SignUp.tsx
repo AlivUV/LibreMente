@@ -7,7 +7,7 @@ import GoogleButton from "./GoogleButton";
 import { CancelOutlined, SendOutlined } from "@mui/icons-material";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import { useRouter } from "next/navigation";
-import { getImageLink, registerUser } from "@/app/_utils/server actions/user";
+import { registerUser } from "@/app/_utils/server actions/user";
 import Link from "next/link";
 import DropZone from "./DropZone";
 
@@ -23,6 +23,14 @@ export default function SignInForm() {
   });
   const [file, setFile] = useState();
   const [sending, setSending] = useState(false);
+  const [errors, setErrors] = useState({
+    profileImage: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const handleChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     setUserData((actualData) => {
@@ -36,15 +44,23 @@ export default function SignInForm() {
   const handleSubmit = useCallback(() => {
     setSending(true);
     const formData = new FormData();
-    formData.set("file", file as unknown as File);
-    getImageLink(formData)
-      .then((imageLink) => {
-        registerUser({
-          ...userData,
-          profilePicture: imageLink || undefined,
-        }).then((_) => {
-          router.push("/ingresar");
+    formData.set("profilePicture", file as unknown as File);
+    Object.entries(userData).forEach(([key, value]) => {
+      formData.set(key, value);
+    });
+    registerUser(formData)
+      .then(({ status, errors }) => {
+        if (status === 200) return router.push("/ingresar");
+
+        setErrors((state) => {
+          Object.entries(errors!).forEach(([key, value]) => {
+            state[key as keyof typeof state] = value;
+          });
+          return state;
         });
+      })
+      .catch((error) => {
+        console.error(error);
       })
       .finally(() => {
         setSending(false);
@@ -76,6 +92,16 @@ export default function SignInForm() {
             propFileState={[file, setFile]}
             title="Cargar imagen de perfil"
           />
+          {errors.profileImage && (
+            <Typography
+              color={"red"}
+              justifySelf={"center"}
+              marginTop={"-1rem"}
+              marginBottom={"1rem"}
+            >
+              {errors.profileImage}
+            </Typography>
+          )}
         </Grid>
         <Grid container marginLeft={"1rem"}>
           <Grid item xs={6}>
@@ -86,6 +112,9 @@ export default function SignInForm() {
               label="Escriba aquí sus nombres"
               onChange={handleChange}
             />
+            {errors.firstName && (
+              <Typography color={"red"}>{errors.firstName}</Typography>
+            )}
           </Grid>
           <Grid item xs={6}>
             <TextField
@@ -95,6 +124,9 @@ export default function SignInForm() {
               label="Escriba aquí sus apellidos"
               onChange={handleChange}
             />
+            {errors.lastName && (
+              <Typography color={"red"}>{errors.lastName}</Typography>
+            )}
           </Grid>
         </Grid>
         <Grid item xs={12}>
@@ -105,6 +137,9 @@ export default function SignInForm() {
             label="Escriba aquí su correo electrónico"
             onChange={handleChange}
           />
+          {errors.email && (
+            <Typography color={"red"}>{errors.email}</Typography>
+          )}
         </Grid>
         <Grid item xs={12}>
           <PasswordField
@@ -113,6 +148,9 @@ export default function SignInForm() {
             label="Escriba aquí su contraseña"
             onChange={handleChange}
           />
+          {errors.password && (
+            <Typography color={"red"}>{errors.password}</Typography>
+          )}
         </Grid>
         <Grid item xs={12}>
           <PasswordField
@@ -121,6 +159,9 @@ export default function SignInForm() {
             label="Escriba nuevamente su contraseña"
             onChange={handleChange}
           />
+          {errors.confirmPassword && (
+            <Typography color={"red"}>{errors.confirmPassword}</Typography>
+          )}
         </Grid>
         <Grid item xs={12}>
           <Typography>

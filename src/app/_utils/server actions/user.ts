@@ -15,7 +15,7 @@ import { validateRegisterData } from "@/app/_validations/user";
 import { UpdateQuery } from "mongoose";
 import { uploadPhoto } from "../google-drive";
 
-export async function getImageLink(formData: FormData) {
+async function getImageLink(formData: FormData) {
   const image = formData.get("file") as File;
   const bytes: ArrayBuffer = await image.arrayBuffer();
   const buffer: Buffer = Buffer.from(bytes);
@@ -27,23 +27,33 @@ export async function getImageLink(formData: FormData) {
   return link;
 }
 
-export async function registerUser({
-  firstName,
-  lastName,
-  email,
-  password,
-  confirmPassword,
-  profilePicture,
-}: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  profilePicture?: string;
-}) {
+export async function registerUser(formData: FormData) {
+  let {
+    profilePicture,
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword,
+  }: {
+    profilePicture: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  } = {
+    profilePicture: await getImageLink(formData),
+    firstName: formData.get("firstName") as string,
+    lastName: formData.get("lastName") as string,
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+    confirmPassword: formData.get("confirmPassword") as string,
+  };
+
   {
     const validationStatus = validateRegisterData(
+      profilePicture,
       firstName,
       lastName,
       email,
@@ -74,7 +84,7 @@ export async function registerUser({
   }
 
   const newUser = await createUser(userData);
-  return newUser;
+  return { status: 201, data: newUser, errors: {} };
 }
 
 export async function fetchUserById(id: string) {
