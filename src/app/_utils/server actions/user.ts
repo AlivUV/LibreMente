@@ -16,7 +16,7 @@ import { UpdateQuery } from "mongoose";
 import { uploadPhoto } from "../google-drive";
 
 async function getImageLink(formData: FormData) {
-  const image = formData.get("file") as File;
+  const image = formData.get("profilePicture") as File;
   const bytes: ArrayBuffer = await image.arrayBuffer();
   const buffer: Buffer = Buffer.from(bytes);
 
@@ -36,7 +36,7 @@ export async function registerUser(formData: FormData) {
     password,
     confirmPassword,
   }: {
-    profilePicture: string;
+    profilePicture: any;
     firstName: string;
     lastName: string;
     email: string;
@@ -48,7 +48,7 @@ export async function registerUser(formData: FormData) {
       : "profilePicture",
     firstName: formData.get("firstName") as string,
     lastName: formData.get("lastName") as string,
-    email: formData.get("email") as string,
+    email: (formData.get("email") as string).toLowerCase(),
     password: formData.get("password") as string,
     confirmPassword: formData.get("confirmPassword") as string,
   };
