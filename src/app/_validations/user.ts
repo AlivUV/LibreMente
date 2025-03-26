@@ -6,7 +6,7 @@ const emailValidation = (email: string) => {
 };
 
 const nameValidation = (name: string) => {
-  return /^[a-zA-ZÀ-ÿ\u00f1\u00d1]{1,64}$/.test(name);
+  return /^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]{1,64}$/.test(name);
 };
 
 export const passwordValidation = (password: string) => {
@@ -63,7 +63,7 @@ export const validateRegisterData = (
   }
   {
     const passwordErrors = passwordValidation(password);
-    if (passwordErrors) {
+    if (passwordErrors.length > 0) {
       validationStatus.status = 400;
       validationStatus.errors = {
         ...validationStatus.errors,

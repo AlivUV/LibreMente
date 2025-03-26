@@ -11,6 +11,7 @@ import { registerUser } from "@/app/_utils/server actions/user";
 import Link from "next/link";
 import DropZone from "./DropZone";
 import { passwordValidation } from "@/app/_validations/user";
+import { toast } from "react-toastify";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -64,14 +65,27 @@ export default function SignInForm() {
 
   const handleSubmit = useCallback(() => {
     setSending(true);
+    setErrors((_) => ({
+      profileImage: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: [],
+      confirmPassword: "",
+    }));
     const formData = new FormData();
     formData.set("profilePicture", file as unknown as File);
     Object.entries(userData).forEach(([key, value]) => {
       formData.set(key, value);
     });
+    toast.loading("Intentando registrar el usuario...");
     registerUser(formData)
       .then(({ status, errors }) => {
-        if (status === 200) return router.push("/ingresar");
+        toast.dismiss();
+        if (status === 201) {
+          toast.success("Usuario creado exitosamente");
+          return router.push("/ingresar");
+        }
 
         setErrors((state) => {
           Object.entries(errors!).forEach(([key, value]) => {
@@ -81,7 +95,10 @@ export default function SignInForm() {
         });
       })
       .catch((error) => {
-        console.error(error);
+        toast.dismiss();
+        if (error.message.substring(0, 6) === "E11000")
+          toast.error("Ya existe un usuario con ese correo");
+        else toast.error("Ha ocurrido un error al intentar crear el usuario");
       })
       .finally(() => {
         setSending(false);

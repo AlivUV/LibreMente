@@ -9,6 +9,7 @@ import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const [userData, setUserData] = useState({
@@ -30,6 +31,7 @@ export default function LoginForm() {
 
   const handleSubmit = useCallback(() => {
     setSending(true);
+    toast.loading("Intentando iniciar sesión...");
     setError("");
     signIn("credentials", {
       email: userData.email,
@@ -37,12 +39,19 @@ export default function LoginForm() {
       redirect: false,
     })
       .then((res) => {
-        if (!res) setError("Error al intentar iniciar sesión.");
-        else if (res.error) setError(res.error);
-        else router.push("/");
+        toast.dismiss();
+        if (!res) {
+          toast.error("El servidor no respondió correctamente");
+          setError("Error al intentar iniciar sesión.");
+        } else if (res.error) setError(res.error);
+        else {
+          toast.success("Bienvenido a Libremente.");
+          router.push("/");
+        }
       })
       .catch((error) => {
-        console.log(error);
+        toast.dismiss();
+        toast.error("Ocurrió un error al intentar iniciar sesión.");
         setError("Error al intentar iniciar sesión.");
       })
       .finally(() => {
