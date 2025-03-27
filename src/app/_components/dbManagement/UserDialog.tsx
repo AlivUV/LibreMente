@@ -92,7 +92,6 @@ export default function UserDialog({
     }
   }
   function editRole() {
-    toast.loading("Intentando cambiar el rol...");
     if (!editingRole || !dbUser) {
       return setEditingRole(true);
     }
@@ -107,6 +106,7 @@ export default function UserDialog({
       return setEditingRole(false);
     }
 
+    toast.loading("Intentando cambiar el rol...");
     saveUserById(dbUser._id!, { role: newRole })
       .then(() => {
         toast.dismiss();
