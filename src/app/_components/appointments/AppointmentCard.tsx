@@ -33,6 +33,7 @@ import Roles from "@/app/_enums/Roles";
 import { useSession } from "next-auth/react";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 import Image from "next/image";
+import { NotificationTypes } from "@/app/_enums/NotificationTypes";
 
 interface Props {
   appointment: IUpcomingAppointment | IPreviousAppointment;
@@ -207,7 +208,12 @@ export const AppointmentCard: FC<Props> = ({
                                       ? `, con esta justificación: ${cancelReason}`
                                       : ""),
                                   true,
-                                  session?.user.profilePicture
+                                  session?.user.profilePicture,
+                                  {
+                                    notificationType:
+                                      NotificationTypes.Appointment,
+                                    clues: [],
+                                  }
                                 );
                             });
                             setOpen(false);

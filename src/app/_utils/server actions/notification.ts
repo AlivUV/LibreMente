@@ -8,6 +8,7 @@ import Roles from "@/app/_enums/Roles";
 import { INotification } from "@/app/_interfaces/INotification";
 import { pusherServer } from "@/app/_lib/pusher";
 import { notificationChecker } from "../notifications";
+import { NotificationTypes } from "@/app/_enums/NotificationTypes";
 
 export async function sendNotification(
   receiver: INotification["receiver"],
@@ -39,4 +40,19 @@ export async function fetchNotificationsByUser(user: string, role: Roles) {
 
 export async function clearNotificationById(id: string) {
   return await deleteNotificationById(id);
+}
+
+export async function getNotificationLink(notification: INotification) {
+  if (!notification) {
+    return "";
+  }
+
+  switch (notification.condition?.notificationType) {
+    case NotificationTypes.Request:
+      return "/solicitudes";
+    case NotificationTypes.Appointment:
+      return "/citas";
+    default:
+      return "";
+  }
 }
