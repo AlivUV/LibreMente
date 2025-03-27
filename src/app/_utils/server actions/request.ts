@@ -21,6 +21,7 @@ import { sendNotification } from "./notification";
 import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
 import { Session } from "next-auth";
 import { UserStates } from "@/app/_enums/UserStates";
+import { NotificationTypes } from "@/app/_enums/NotificationTypes";
 
 export async function fetchRequests() {
   const session = await getMyServerSession();
@@ -111,6 +112,10 @@ export async function answerRequest(
             : `estos fueron sus comentarios:\n${comment}`
         }`,
     true,
-    session.user.profilePicture!
+    session.user.profilePicture!,
+    {
+      notificationType: NotificationTypes.RequestResponse,
+      clues: [],
+    }
   );
 }

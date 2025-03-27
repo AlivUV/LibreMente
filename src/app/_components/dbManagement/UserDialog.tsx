@@ -18,6 +18,10 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useState } from "react";
 import StateDialog from "./StateDialog";
+import { toast } from "react-toastify";
+import { sendNotification } from "@/app/_utils/server actions/notification";
+import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
+import { NotificationTypes } from "@/app/_enums/NotificationTypes";
 
 export default function UserDialog({
   index,
@@ -88,18 +92,44 @@ export default function UserDialog({
     }
   }
   function editRole() {
+    toast.loading("Intentando cambiar el rol...");
     if (!editingRole || !dbUser) {
       return setEditingRole(true);
     }
-    if (!newRole) return setEditingRole(false);
+    if (!newRole) {
+      toast.dismiss();
+      toast.info("No se seleccionó un rol diferenete.");
+      return setEditingRole(false);
+    }
     if (newRole === dbUser.role) {
+      toast.dismiss();
+      toast.info("No se seleccionó un rol diferenete");
       return setEditingRole(false);
     }
 
     saveUserById(dbUser._id!, { role: newRole })
       .then(() => {
+        toast.dismiss();
+        toast.success("El rol fue cambiado con éxito.");
+        sendNotification(
+          {
+            type: ReceiverTypes.User,
+            id: dbUser._id!,
+          },
+          `El administrador ha cambiado tu rol a ${newRole}`,
+          true,
+          dbUser.profilePicture,
+          {
+            notificationType: NotificationTypes.RoleChange,
+            clues: [],
+          }
+        );
         dbUser.role = newRole;
         users[index!].role = newRole;
+      })
+      .catch((error) => {
+        toast.dismiss();
+        toast.error("Ocurrió un error al intentar cambiar el rol.");
       })
       .finally(() => setEditingRole(false));
   }

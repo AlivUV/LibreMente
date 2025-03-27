@@ -26,6 +26,7 @@ import { sendNotification } from "@/app/_utils/server actions/notification";
 import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
 import { toast } from "react-toastify";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
+import { NotificationTypes } from "@/app/_enums/NotificationTypes";
 
 interface IState {
   date?: Date;
@@ -208,7 +209,11 @@ export default function AppointmentDatePicker({
                 { type: ReceiverTypes.User, id: psychologist.user as string },
                 `Tienes una nueva cita con ${user.firstName} ${user.lastName}`,
                 true,
-                user.profilePicture
+                user.profilePicture,
+                {
+                  notificationType: NotificationTypes.Appointment,
+                  clues: [],
+                }
               );
             }}
           >

@@ -1,4 +1,5 @@
 import { INotification } from "@/app/_interfaces/INotification";
+import { getNotificationLink } from "@/app/_utils/server actions/notification";
 import { Clear } from "@mui/icons-material";
 import {
   Avatar,
@@ -12,6 +13,7 @@ import {
 import TimeAgo from "javascript-time-ago";
 import es from "javascript-time-ago/locale/es";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 export default function NotificationsList({
   notifications,
@@ -26,15 +28,27 @@ export default function NotificationsList({
   const currentTime = Date.now();
   TimeAgo.addDefaultLocale(es);
   const timeAgo = new TimeAgo("es");
+
+  const handleClick = useCallback(
+    (index: number) => {
+      getNotificationLink(notifications[index]).then((link) => {
+        handleClose();
+        handleClear(
+          notifications[index]._id!,
+          index,
+          notifications[index].simpleClear
+        );
+        router.push(link);
+      });
+    },
+    [handleClose, handleClear, notifications, router]
+  );
+
   return notifications.length > 0 ? (
     <List>
       {notifications.map((notification, index) => (
         <ListItem
-          onClick={() => {
-            router.push("/solicitudes");
-            handleClose();
-            handleClear(notification._id!, index, notification.simpleClear);
-          }}
+          onClick={() => handleClick(index)}
           key={`Notificacion ${notification._id}`}
           sx={{ color: "#666666" }}
         >
