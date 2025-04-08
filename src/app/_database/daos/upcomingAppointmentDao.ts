@@ -12,7 +12,7 @@ export async function getUpcomingAppointmentsByPsychologist(
   const appointments = await UpcomingAppointment.find({
     psychologist: psychologist,
   })
-    .sort({ date: 1 })
+    .sort({ date: -1 })
     .lean();
   return serialize(appointments) as IUpcomingAppointment[];
 }
@@ -23,7 +23,7 @@ export async function getUpcomingAppointmentsByPatient(patient: string) {
   const appointments = await UpcomingAppointment.find({
     patient: patient,
   })
-    .sort({ date: 1 })
+    .sort({ date: -1 })
     .lean();
   return serialize(appointments) as IUpcomingAppointment[];
 }
