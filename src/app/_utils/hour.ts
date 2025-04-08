@@ -9,7 +9,14 @@ export default class Hour {
   }
 
   public getString(): string {
-    return this.value < 10 ? `0${this.value}:00` : `${this.value}:00`;
+    if (this.value === 12) return `${this.value}:00 pm`;
+
+    let standardTime =
+      this.value % 12 < 10 ? `0${this.value % 12}:00` : `${this.value % 12}:00`;
+
+    if (this.value < 12) return `${standardTime} am`;
+
+    return `${standardTime} pm`;
   }
 }
 
