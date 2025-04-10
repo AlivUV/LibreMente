@@ -61,6 +61,28 @@ async function setPermissions(id: string) {
   });
 }
 
+export async function updatePhoto(fileId: string, data: Buffer) {
+  const auth = await authorize();
+  const service = google.drive({ version: "v3", auth });
+  const media = {
+    mimeType: "image/webp",
+    body: new stream.PassThrough().end(data),
+  };
+
+  try {
+    console.log("PRAYING FOR IT TO WORK");
+    const file = await service.files.update({
+      fileId: fileId,
+      media: media,
+      fields: "webContentLink",
+    });
+    console.log(file.data.webContentLink);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function uploadPhoto(data: Buffer, name: string) {
   const auth = await authorize();
   const service = google.drive({ version: "v3", auth });

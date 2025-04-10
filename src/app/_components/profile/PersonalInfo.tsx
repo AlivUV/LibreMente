@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 import {
   Grid,
   Box,
@@ -17,23 +17,27 @@ import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 
 interface Props {
   user: IUser;
+  updating: boolean;
+  setUpdating: Dispatch<SetStateAction<boolean>>;
+  pictureState: File | null;
   pendingRequest: boolean;
-  setPendingRequest: (value: boolean) => void;
+  setPendingRequest: Dispatch<SetStateAction<boolean>>;
 }
 
 export const PersonalInfo: FC<Props> = ({
   user,
   pendingRequest,
   setPendingRequest,
+  updating,
+  setUpdating,
+  pictureState,
 }) => {
   const router = useRouter();
   const { data: session, status, update } = useSession();
   const [loading, setLoading] = useState(false);
-  const [updating, setUpdating] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    // <form /* onSubmit={handleSubmit(onUpdateUser)} */ noValidate>
     <ProfileFieldContext.Provider
       value={{ updating, pendingRequest, setPendingRequest, setModalOpen }}
     >
@@ -99,14 +103,12 @@ export const PersonalInfo: FC<Props> = ({
             )}
           </Stack>
         </Grid>
-        <FieldForm setUpdating={setUpdating} />
+        <FieldForm setUpdating={setUpdating} pictureState={pictureState} />
         <RoleChangeModal
           open={modalOpen}
           handleClose={() => setModalOpen(false)}
         />
       </Grid>
     </ProfileFieldContext.Provider>
-
-    // </form>
   );
 };
