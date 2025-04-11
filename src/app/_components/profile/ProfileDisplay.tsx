@@ -9,6 +9,8 @@ import { UploadProfilePicture } from "./UploadProfilePicture";
 
 export default function ProfileDisplay() {
   const { data: session } = useSession();
+  const [fileState, setFileState] = useState(null);
+  const [updating, setUpdating] = useState(false);
   const [pendingRequests, setPendingRequests] = useState(true);
   useEffect(() => {
     if (session) {
@@ -24,11 +26,19 @@ export default function ProfileDisplay() {
     >
       <Box sx={{ margin: "80px auto", padding: "0px 10px" }}>
         <Container component="main" maxWidth="sm">
-          <UploadProfilePicture url={session?.user.profilePicture!} />
+          <UploadProfilePicture
+            url={session?.user.profilePicture!}
+            updating={updating}
+            fileState={fileState}
+            setFileState={setFileState}
+          />
           <Grid container spacing={2}>
             <Grid item>
               <PersonalInfo
                 user={session?.user!}
+                updating={updating}
+                setUpdating={setUpdating}
+                pictureState={fileState}
                 pendingRequest={pendingRequests}
                 setPendingRequest={setPendingRequests}
               />

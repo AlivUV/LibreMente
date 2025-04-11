@@ -13,7 +13,7 @@ import { UserStates } from "@/app/_enums/UserStates";
 import IUser from "@/app/_interfaces/IUser";
 import { validateRegisterData } from "@/app/_validations/user";
 import { UpdateQuery } from "mongoose";
-import { uploadPhoto } from "../google-drive";
+import { updatePhoto, uploadPhoto } from "../google-drive";
 
 async function getImageLink(formData: FormData) {
   const image = formData.get("profilePicture") as File;
@@ -25,6 +25,15 @@ async function getImageLink(formData: FormData) {
   const link = `https://lh3.googleusercontent.com/d/${imageId}`;
 
   return link;
+}
+
+export async function updateProfilePhoto(formData: FormData) {
+  const fileId = formData.get("fileId") as string;
+  const image = formData.get("profilePicture") as File;
+  const bytes: ArrayBuffer = await image.arrayBuffer();
+  const buffer: Buffer = Buffer.from(bytes);
+
+  const imageId = await updatePhoto(fileId, buffer);
 }
 
 export async function registerUser(formData: FormData) {

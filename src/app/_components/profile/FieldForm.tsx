@@ -4,15 +4,30 @@ import Roles from "@/app/_enums/Roles";
 import IUser from "@/app/_interfaces/IUser";
 import { Grid } from "@mui/material";
 import { toast } from "react-toastify";
+import { Dispatch, SetStateAction } from "react";
+import { uploadPhoto } from "@/app/_utils/google-drive";
+import { updateProfilePhoto } from "@/app/_utils/server actions/user";
 
 export default function FieldForm({
   setUpdating,
+  pictureState,
 }: {
   setUpdating: (value: boolean) => void;
+  pictureState: any;
 }) {
   const { data: session, update } = useSession();
   const user = session?.user;
+
   function handleSubmit(formData: FormData) {
+    if (pictureState) {
+      const fileData = new FormData();
+      fileData.append("fileId", user!.profilePicture!.substring(36)!);
+      fileData.append("profilePicture", pictureState);
+
+      console.log(fileData);
+      updateProfilePhoto(fileData);
+    }
+
     const dateParts = formData
       .get("Fecha de Nacimiento")
       ?.toString()
@@ -41,8 +56,9 @@ export default function FieldForm({
         success: "Datos actualizados con éxito",
         error: "Ha ocurrido un error, por favor inténtalo de nuevo",
       })
-      .then(() => setUpdating(false));
-    // update(updatedUser).then(() => setUpdating(false));
+      .then(() => {
+        setUpdating(false);
+      });
   }
   return (
     <form id="profileForm" action={handleSubmit}>
