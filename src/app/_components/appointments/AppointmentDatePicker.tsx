@@ -186,41 +186,41 @@ export default function AppointmentDatePicker({
             sx={{ flexGrow: 1 }}
             onClick={async () => {
               const user = session?.user!;
-              // toast
-              //   .promise(
-              //     scheduleAppointment(
-              //       user._id!,
-              //       schedule.psychologist as string,
-              //       state.date!
-              //     ),
-              //     {
-              //       pending: "Programando cita...",
-              //       success: "Cita programada con éxito",
-              //       error:
-              //         "Ha ocurrido un error, por favor inténtalo nuevamente",
-              //     }
-              //   )
-              //   .then((appointment) => {
-              //     appointments.push(appointment);
-              //     dispatcher({
-              //       type: "reset",
-              //       appointments: appointments,
-              //       schedule: schedule,
-              //     });
-              //   });
+              toast
+                .promise(
+                  scheduleAppointment(
+                    user._id!,
+                    schedule.psychologist as string,
+                    state.date!
+                  ),
+                  {
+                    pending: "Programando cita...",
+                    success: "Cita programada con éxito",
+                    error:
+                      "Ha ocurrido un error, por favor inténtalo nuevamente",
+                  }
+                )
+                .then((appointment) => {
+                  appointments.push(appointment);
+                  dispatcher({
+                    type: "reset",
+                    appointments: appointments,
+                    schedule: schedule,
+                  });
+                });
               sendEmailNotification(user, psychologist.user as string, {
                 appointment: { date: state.date! },
               });
-              // sendNotification(
-              //   { type: ReceiverTypes.User, id: psychologist.user as string },
-              //   `Tienes una nueva cita con ${user.firstName} ${user.lastName}`,
-              //   true,
-              //   user.profilePicture,
-              //   {
-              //     notificationType: NotificationTypes.Appointment,
-              //     clues: [],
-              //   }
-              // );
+              sendNotification(
+                { type: ReceiverTypes.User, id: psychologist.user as string },
+                `Tienes una nueva cita con ${user.firstName} ${user.lastName}`,
+                true,
+                user.profilePicture,
+                {
+                  notificationType: NotificationTypes.Appointment,
+                  clues: [],
+                }
+              );
             }}
           >
             Programar ahora
