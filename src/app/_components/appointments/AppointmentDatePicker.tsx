@@ -22,7 +22,10 @@ import Hour from "@/app/_utils/hour";
 import { scheduleAppointment } from "@/app/_utils/server actions/appointment";
 import { useSession } from "next-auth/react";
 import { IPsychologist } from "@/app/_interfaces/IPsychologist";
-import { sendNotification } from "@/app/_utils/server actions/notification";
+import {
+  sendEmailNotification,
+  sendNotification,
+} from "@/app/_utils/server actions/notification";
 import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
 import { toast } from "react-toastify";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
@@ -205,6 +208,9 @@ export default function AppointmentDatePicker({
                     schedule: schedule,
                   });
                 });
+              sendEmailNotification(user, psychologist.user as string, {
+                appointment: { date: state.date! },
+              });
               sendNotification(
                 { type: ReceiverTypes.User, id: psychologist.user as string },
                 `Tienes una nueva cita con ${user.firstName} ${user.lastName}`,

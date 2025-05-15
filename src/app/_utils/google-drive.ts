@@ -47,11 +47,6 @@ async function setPermissions(id: string) {
   const auth = await authorize();
   const service = google.drive({ version: "v3", auth });
 
-  const permissions = {
-    role: "reader",
-    type: "anyone",
-  };
-
   const response = await service.permissions.create({
     fileId: id,
     requestBody: {

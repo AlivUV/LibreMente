@@ -10,8 +10,6 @@ import { redirect } from "next/navigation";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
 
 interface Props {
-  //   patient: IUser;
-  //   appointments: IPreviousAppointment[];
   params: {
     id: string;
   };
