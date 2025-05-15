@@ -22,7 +22,10 @@ import Hour from "@/app/_utils/hour";
 import { scheduleAppointment } from "@/app/_utils/server actions/appointment";
 import { useSession } from "next-auth/react";
 import { IPsychologist } from "@/app/_interfaces/IPsychologist";
-import { sendNotification } from "@/app/_utils/server actions/notification";
+import {
+  sendEmailNotification,
+  sendNotification,
+} from "@/app/_utils/server actions/notification";
 import { ReceiverTypes } from "@/app/_enums/ReceiverTypes";
 import { toast } from "react-toastify";
 import { FontWeightValues } from "@/app/_enums/FontWeightValues";
@@ -183,38 +186,41 @@ export default function AppointmentDatePicker({
             sx={{ flexGrow: 1 }}
             onClick={async () => {
               const user = session?.user!;
-              toast
-                .promise(
-                  scheduleAppointment(
-                    user._id!,
-                    schedule.psychologist as string,
-                    state.date!
-                  ),
-                  {
-                    pending: "Programando cita...",
-                    success: "Cita programada con éxito",
-                    error:
-                      "Ha ocurrido un error, por favor inténtalo nuevamente",
-                  }
-                )
-                .then((appointment) => {
-                  appointments.push(appointment);
-                  dispatcher({
-                    type: "reset",
-                    appointments: appointments,
-                    schedule: schedule,
-                  });
-                });
-              sendNotification(
-                { type: ReceiverTypes.User, id: psychologist.user as string },
-                `Tienes una nueva cita con ${user.firstName} ${user.lastName}`,
-                true,
-                user.profilePicture,
-                {
-                  notificationType: NotificationTypes.Appointment,
-                  clues: [],
-                }
-              );
+              // toast
+              //   .promise(
+              //     scheduleAppointment(
+              //       user._id!,
+              //       schedule.psychologist as string,
+              //       state.date!
+              //     ),
+              //     {
+              //       pending: "Programando cita...",
+              //       success: "Cita programada con éxito",
+              //       error:
+              //         "Ha ocurrido un error, por favor inténtalo nuevamente",
+              //     }
+              //   )
+              //   .then((appointment) => {
+              //     appointments.push(appointment);
+              //     dispatcher({
+              //       type: "reset",
+              //       appointments: appointments,
+              //       schedule: schedule,
+              //     });
+              //   });
+              sendEmailNotification(user, psychologist.user as string, {
+                appointment: { date: state.date! },
+              });
+              // sendNotification(
+              //   { type: ReceiverTypes.User, id: psychologist.user as string },
+              //   `Tienes una nueva cita con ${user.firstName} ${user.lastName}`,
+              //   true,
+              //   user.profilePicture,
+              //   {
+              //     notificationType: NotificationTypes.Appointment,
+              //     clues: [],
+              //   }
+              // );
             }}
           >
             Programar ahora

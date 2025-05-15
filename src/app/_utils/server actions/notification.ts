@@ -9,6 +9,73 @@ import { INotification } from "@/app/_interfaces/INotification";
 import { pusherServer } from "@/app/_lib/pusher";
 import { notificationChecker } from "../notifications";
 import { NotificationTypes } from "@/app/_enums/NotificationTypes";
+import { sendEmail } from "../gmail";
+import { EmailDraftTypes } from "@/app/_enums/EmailDraftTypes";
+import { getUserById } from "@/app/_database/daos/userDao";
+
+interface IUserInfo {
+  id?: string;
+  email?: string;
+  fullName?: string;
+}
+
+interface INotificationInfo {
+  user?: IUserInfo;
+  appointment?: {
+    date: Date;
+  };
+}
+
+function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
+  let subject, message;
+
+  switch (type) {
+    case EmailDraftTypes.NewAppointmentPsychologist:
+      subject = "LibreMente cita programada";
+      message = `El paciente ${
+        notificationInfo!.user!.fullName
+      } ha programado una cita para el día ${notificationInfo!.appointment!.date.getDate()}/${
+        notificationInfo!.appointment!.date.getMonth() + 1
+      }/${notificationInfo!.appointment!.date.getFullYear()} a las ${notificationInfo!.appointment!.date.toLocaleTimeString()}`;
+      break;
+    case EmailDraftTypes.NewAppointmentPatient:
+      subject = "LibreMente cita programada";
+      message = `Programaste una cita con el psicólogo ${
+        notificationInfo!.user!.fullName
+      } el día ${notificationInfo!.appointment!.date.getDate()}/${
+        notificationInfo!.appointment!.date.getMonth() + 1
+      }/${notificationInfo!.appointment!.date.getFullYear()} a las ${notificationInfo!.appointment!.date.toLocaleTimeString()}`;
+      break;
+  }
+
+  return [subject, message];
+}
+
+export async function sendEmailNotification(
+  patientInfo: IUserInfo,
+  psychologistId: string,
+  notificationInfo?: INotificationInfo
+) {
+  let [subject, message] = createEmailDraft(
+    EmailDraftTypes.NewAppointmentPatient,
+    { ...notificationInfo, user: patientInfo }
+  );
+
+  sendEmail(patientInfo.email!, subject!, message!);
+
+  const psychologistInfo = await getUserById(psychologistId);
+
+  [subject, message] = createEmailDraft(
+    EmailDraftTypes.NewAppointmentPsychologist,
+    {
+      ...notificationInfo,
+      user: psychologistInfo,
+    }
+  );
+
+  sendEmail(psychologistInfo.email!, subject!, message!);
+}
+
 
 export async function sendNotification(
   receiver: INotification["receiver"],
