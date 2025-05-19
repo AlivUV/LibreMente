@@ -12,15 +12,12 @@ import { NotificationTypes } from "@/app/_enums/NotificationTypes";
 import { sendEmail } from "../gmail";
 import { EmailDraftTypes } from "@/app/_enums/EmailDraftTypes";
 import { getUserById } from "@/app/_database/daos/userDao";
-
-interface IUserInfo {
-  id?: string;
-  email?: string;
-  fullName?: string;
-}
+import IUser from "@/app/_interfaces/IUser";
+import Hour from "../hour";
 
 interface INotificationInfo {
-  user?: IUserInfo;
+  patient?: IUser;
+  psychologist?: IUser;
   appointment?: {
     date: Date;
   };
@@ -32,19 +29,23 @@ function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
   switch (type) {
     case EmailDraftTypes.NewAppointmentPsychologist:
       subject = "LibreMente cita programada";
-      message = `El paciente ${
-        notificationInfo!.user!.fullName
+      message = `El ${notificationInfo!.patient!.role.toLowerCase()} ${
+        notificationInfo!.patient!.fullName
       } ha programado una cita para el día ${notificationInfo!.appointment!.date.getDate()}/${
         notificationInfo!.appointment!.date.getMonth() + 1
-      }/${notificationInfo!.appointment!.date.getFullYear()} a las ${notificationInfo!.appointment!.date.toLocaleTimeString()}`;
+      }/${notificationInfo!.appointment!.date.getFullYear()} a las ${new Hour(
+        notificationInfo!.appointment!.date.getHours()
+      ).getString()}`;
       break;
     case EmailDraftTypes.NewAppointmentPatient:
       subject = "LibreMente cita programada";
-      message = `Programaste una cita con el psicólogo ${
-        notificationInfo!.user!.fullName
+      message = `Programaste una cita con el ${notificationInfo!.psychologist!.role.toLowerCase()} ${
+        notificationInfo!.psychologist!.fullName
       } el día ${notificationInfo!.appointment!.date.getDate()}/${
         notificationInfo!.appointment!.date.getMonth() + 1
-      }/${notificationInfo!.appointment!.date.getFullYear()} a las ${notificationInfo!.appointment!.date.toLocaleTimeString()}`;
+      }/${notificationInfo!.appointment!.date.getFullYear()} a las ${new Hour(
+        notificationInfo!.appointment!.date.getHours()
+      ).getString()}`;
       break;
   }
 
@@ -52,24 +53,29 @@ function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
 }
 
 export async function sendEmailNotification(
-  patientInfo: IUserInfo,
+  patientInfo: IUser,
   psychologistId: string,
   notificationInfo?: INotificationInfo
 ) {
+  const psychologistInfo = await getUserById(psychologistId);
+
   let [subject, message] = createEmailDraft(
     EmailDraftTypes.NewAppointmentPatient,
-    { ...notificationInfo, user: patientInfo }
+    {
+      ...notificationInfo,
+      patient: patientInfo,
+      psychologist: psychologistInfo,
+    }
   );
 
   sendEmail(patientInfo.email!, subject!, message!);
-
-  const psychologistInfo = await getUserById(psychologistId);
 
   [subject, message] = createEmailDraft(
     EmailDraftTypes.NewAppointmentPsychologist,
     {
       ...notificationInfo,
-      user: psychologistInfo,
+      patient: patientInfo,
+      psychologist: psychologistInfo,
     }
   );
 
