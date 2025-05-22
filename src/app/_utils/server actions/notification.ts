@@ -9,7 +9,7 @@ import { INotification } from "@/app/_interfaces/INotification";
 import { pusherServer } from "@/app/_lib/pusher";
 import { notificationChecker } from "../notifications";
 import { NotificationTypes } from "@/app/_enums/NotificationTypes";
-import { sendEmail } from "../gmail";
+import { sendEmail } from "../email";
 import { EmailDraftTypes } from "@/app/_enums/EmailDraftTypes";
 import { getUserById } from "@/app/_database/daos/userDao";
 import IUser from "@/app/_interfaces/IUser";
@@ -34,8 +34,8 @@ function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
       } ha programado una cita para el día ${notificationInfo!.appointment!.date.getDate()}/${
         notificationInfo!.appointment!.date.getMonth() + 1
       }/${notificationInfo!.appointment!.date.getFullYear()} a las ${new Hour(
-        notificationInfo!.appointment!.date.getHours()
-      ).getString()}`;
+        notificationInfo!.appointment!.date.getUTCHours() - 5
+      ).getString()} (Hora de Colombia)`;
       break;
     case EmailDraftTypes.NewAppointmentPatient:
       subject = "LibreMente cita programada";
@@ -44,8 +44,8 @@ function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
       } el día ${notificationInfo!.appointment!.date.getDate()}/${
         notificationInfo!.appointment!.date.getMonth() + 1
       }/${notificationInfo!.appointment!.date.getFullYear()} a las ${new Hour(
-        notificationInfo!.appointment!.date.getHours()
-      ).getString()}`;
+        notificationInfo!.appointment!.date.getUTCHours() - 5
+      ).getString()} (Hora de Colombia)`;
       break;
   }
 

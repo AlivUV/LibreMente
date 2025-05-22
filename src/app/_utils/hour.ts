@@ -1,7 +1,7 @@
 export default class Hour {
   private value: number;
   public constructor(value: number) {
-    this.value = value;
+    this.value = (value + 24) % 24;
   }
 
   public getValue(): number {
