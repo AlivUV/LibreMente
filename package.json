@@ -13,6 +13,7 @@
     "@daily-co/daily-js": "^0.62.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@getbrevo/brevo": "^2.2.0",
     "@mui/icons-material": "^6.1.1",
     "@mui/material": "^5.15.16",
     "@mui/x-charts": "^7.11.1",
