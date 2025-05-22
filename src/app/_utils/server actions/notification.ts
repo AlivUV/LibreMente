@@ -34,8 +34,8 @@ function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
       } ha programado una cita para el día ${notificationInfo!.appointment!.date.getDate()}/${
         notificationInfo!.appointment!.date.getMonth() + 1
       }/${notificationInfo!.appointment!.date.getFullYear()} a las ${new Hour(
-        notificationInfo!.appointment!.date.getHours()
-      ).getString()}`;
+        notificationInfo!.appointment!.date.getUTCHours() - 5
+      ).getString()} (Hora de Colombia)`;
       break;
     case EmailDraftTypes.NewAppointmentPatient:
       subject = "LibreMente cita programada";
@@ -44,8 +44,8 @@ function createEmailDraft(type: string, notificationInfo?: INotificationInfo) {
       } el día ${notificationInfo!.appointment!.date.getDate()}/${
         notificationInfo!.appointment!.date.getMonth() + 1
       }/${notificationInfo!.appointment!.date.getFullYear()} a las ${new Hour(
-        notificationInfo!.appointment!.date.getHours()
-      ).getString()}`;
+        notificationInfo!.appointment!.date.getUTCHours() - 5
+      ).getString()} (Hora de Colombia)`;
       break;
   }
 
